@@ -1,3 +1,9 @@
+<?php 
+   include "dblib.php";
+   include "admin_class.php";
+   $db = new dbmethods();   
+   $admin = new admin();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +14,10 @@
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/jquery-1.11.2.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="js/bootstrap.js"></script>
-    <script src="js/code.js"></script>
+    <script src="js/validate.js"></script>
 
 
 </head>

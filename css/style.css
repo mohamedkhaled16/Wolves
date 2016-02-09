@@ -41,4 +41,9 @@ body .btn-group-justified>.btn-group .dropdown-menu{
    border:solid 1px #ccc;
    float: left;
    list-style: none;
+}.result{
+	margin: 10px;
+	display: none;
+    padding: 10px;
+    border-radius: 5px
 }

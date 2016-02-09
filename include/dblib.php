@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ALL);
+error_reporting(0);
 //ini_set('display_errors', 1);
 require_once('dbconn.php');
 class dbmethods {
@@ -119,6 +119,7 @@ class dbmethods {
         return $result;
     }
     public function query($query) {
+        $data='';
         $sql = $query;
         $result = mysqli_query($this->link, $sql);
         if ($result) {
