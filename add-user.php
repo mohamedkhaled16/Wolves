@@ -1,34 +1,4 @@
-<html>
-<head>
-	<title>Add user</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<script src="js/jquery-1.11.2.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-
-</head>
-<body>
-<!-- Creating Nav -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-  	<div class="navbar-header">
-  	  <a class="navbar-brand" href="#">Wolves Cafeteria</a>  		
-  	</div>
-  			<ul class="nav navbar-nav">
-  				<li class="active"><a href="#">Home</a></li>
-  				<li><a href="#">Products</a></li>
-  				<li><a href="#">Users</a></li>
-  				<li><a href="#">Manual order</a></li>
-  				<li><a href="#">Checks</a></li>
-  			</ul>
-
-  			<ul class="nav navbar-nav navbar-right">
-          <li><a class="navbar-brand" href="#"><img src="img/wolves.png" alt="" height="27" width="30"></a></li>
-                <li><a href="#">Admin</a></li>
-                </ul>	
-  	
-  </div>
-</nav>
+<?php include "include/header.php" ;?>
 
 <!-- Creating the text -->
 
@@ -155,12 +125,6 @@
     </div>
 </div>
 
+<?php include "include/footer.php" ;?>
 
-
-
-
-
-
-</body>
-</html>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

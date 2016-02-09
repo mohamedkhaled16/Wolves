@@ -1,4 +1,4 @@
-<?php include("include/Header.php"); ?>
+<?php include("include/header.php"); ?>
 
 
      <div class="row">
@@ -211,4 +211,4 @@
 </div></div>
 
 
-<?php include("include/Footer.php"); ?>
+<?php include("include/footer.php"); ?>

@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<div class="container text-center">
+<div class="container-fluid text-center">
 <!--style="background-color:#286090"-->
 
 <div  id="my-modal" class="modal" data-keyboard = "true" data-backdrop="true">
