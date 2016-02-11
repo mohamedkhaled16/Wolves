@@ -1,6 +1,5 @@
 <?php 
-require_once "proudct_class.php";
-class admin extends ProudctDB {
+class OrderDB{
 	function checkEmail($email){
 		   $data=array();
 		   $query=$GLOBALS['db']->select("users",$data,"email='{$email}'");
@@ -14,10 +13,7 @@ class admin extends ProudctDB {
 	function insert_user($data){
       $query=$GLOBALS['db']->add("users",$data);
       return $query;
-	}
-	
-	
-		
+	}	
 
 }
 ?>

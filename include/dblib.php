@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
-//ini_set('display_errors', 1);
-require_once('dbconn.php');
+ini_set('display_errors', 1);
+require_once('include/dbconn.php');
 class dbmethods {
     private $db;// = Database::getInstance();
     private $link = null;
@@ -76,6 +76,8 @@ class dbmethods {
         $inFieldsSql = "(" . implode($indexArray, ",") . ")";
         $inValuesSql = "('" . implode($valueArray, "','") . "')";
         $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
+        
+        echo $sql;
         $result = mysqli_query($this->link, $sql);
         return $result;
     }

@@ -1,8 +1,5 @@
 <?php 
-   include "dblib.php";
-   include "admin_class.php";
-   $db = new dbmethods();   
-   $admin = new admin();
+   include "include/classes_header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
