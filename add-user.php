@@ -28,11 +28,12 @@
         if(empty($email)){
           $error.="Please Enter your email <br/>";
         }else{
-           $reg='/^[a-zA-Z_.0-9]+@[a-z0-9]+\.[a-z]{2,3}|\.[a-z]{2}$/i';  
-           $v=preg_match($reg,trim($email));
-           if(!preg_match($reg,trim($email)))
+          // $reg='/^[a-zA-Z_.0-9]+@[a-z0-9]+\.[a-z]{2,3}|\.[a-z]{2}$/i';  
+           //$v=preg_match($reg,trim($email));
+           //if(!preg_match($reg,trim($email)))
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL))
             {
-              $error.="Please Enter your not validate <br/>";
+              $error.="Please Enter your email not validate <br/>";
             }else{
               $res=$admin->checkEmail($email);
                if($res==1){
