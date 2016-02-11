@@ -36,8 +36,8 @@
         //////////////*/*/*/*/*/*/*/*/*/*/*/*/*//
         // Define the constant variable for mysql
           $servername = "localhost";
-          $username = "zienab";
-          $password = "003";
+          $username = "";
+          $password = "";
           $dbName = "cafeteria";
 
      //Open a new connection 
@@ -83,6 +83,25 @@ if ($TBcontent->num_rows > 0) {  //check if the number of rows which is an attri
 </table>
 </div>
 
+<!-- TO echo number of users -->
+<div class="row"> 
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+          
+             <code>
+          <?php
+                //print the number of users
+                echo "Total Number of users "."$Total_Users";
+          ?>
+          </code>
+        </div>
+          <div class="col-sm-5"></div>
+        </div>
+
+
+
+
+<!-- End -->
 
 <!-- For Pagenation code -->
 <footer align="center">
