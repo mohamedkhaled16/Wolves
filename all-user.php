@@ -1,3 +1,4 @@
+<!-- Wolves cafeteria project - Author:Mostafa Abd EL Fattah -->
 <?php include "include/header.php" ;?>
 <!-- Creating the text -->
 
@@ -55,10 +56,10 @@ if ($TBcontent->num_rows > 0) {  //check if the number of rows which is an attri
     // output data of each row //with fetch_assoc() we will put a key and value for each row
     
     $Total_Users=0;
+
     while($row = $TBcontent->fetch_assoc()) {
-        //echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
           
-          //echo the daa into the table
+          //echo the data into the table
 
                  echo "<tr><td>".$row['name']."</td>"; 
                  echo "<td>".$row['room_no']. "</td>";
