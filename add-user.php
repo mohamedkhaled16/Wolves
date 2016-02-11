@@ -1,3 +1,4 @@
+<!-- Wolves cafeteria team prject Author:Mostafa Abd EL Fattah -->
 <?php 
     include "include/header.php";
  ?>
@@ -94,6 +95,9 @@
             }
           }
           $password = md5($password);
+
+          //adding user data
+          
            $data =array("name"=>"{$name}","email"=>"{$email}","password"=>"{$password}","image"=>"{$nameimg}","room_no"=>"{$roomNo}","ext"=>"{$ext}","user_type"=>'user');
           $result=$admin->insert_user($data);  
           if ($result != false) {    

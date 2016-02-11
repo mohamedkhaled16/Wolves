@@ -24,16 +24,60 @@
         <td>Ext</td>
         <td>Actions</td>
    </tr>
+   <!-- Selecting the information from the data base into our table -->
+
+   <?php 
+       //Figure out the errors
+
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        //////////////*/*/*/*/*/*/*/*/*/*/*/*/*//
+        // Define the constant variable for mysql
+          $servername = "localhost";
+          $username = "zienab";
+          $password = "003";
+          $dbName = "cafeteria";
+
+     //Open a new connection 
+      $DBconn = new mysqli($servername, $username, $password, $dbName);
+
+     //check for the connection
+    if ($DBconn->connect_error) {
+     die("Connection to $dbName failed:" . $DBconn->connect_error);
+     }
+
+ // SELECT VALUES FROM THE TABLE 
+  $sqlTB = "SELECT name, room_no, image, ext FROM users";
+  $TBcontent = $DBconn->query($sqlTB); //as it will return array
+
+if ($TBcontent->num_rows > 0) {  //check if the number of rows which is an attribute from mysql class
+    // output data of each row //with fetch_assoc() we will put a key and value for each row
+    
+    $Total_Users=0;
+    while($row = $TBcontent->fetch_assoc()) {
+        //echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+          
+          //echo the daa into the table
+
+                 echo "<tr><td>".$row['name']."</td>"; 
+                 echo "<td>".$row['room_no']. "</td>";
+                 echo "<td>".$row['image']."</td>";
+                 echo "<td>".$row['ext']."</td>";
+                                                         ///getting the number of the elements
+                 /*echo "<td><a href='UPDATE_mysql.php?id=".$row['UID']."' class='btn btn-success' role='button'>Edit</a>  <a href='delete_mysql.php?id=".$row['UID']."' class='btn btn-danger' role='button'>Delete</a></td>";*/
+
+                 echo "<td><a href='#' class='btn btn-success' role='button'>Edit</a>  <a href='#' class='btn btn-danger' role='button'>Delete</a></td>";
  
+                 $Total_Users=$Total_Users+1; 
+           
+           } //While
+   } else {
+       echo "0 results";
+   }
+      $DBconn->close(); 
+    ?>
 
-   <tr align="center">
-        <td>Mostafa DevDes</td>
-        <td>5864</td>
-        <td>Image</td> 
-        <td>4658</td>
-        <td><a href='#' class='btn btn-success' role='button'>edit</a> <a href='#' class='btn btn-danger' role='button'>delete</a> </td>
-
-   </tr> 
 
 </table>
 </div>
