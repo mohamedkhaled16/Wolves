@@ -1,4 +1,33 @@
 <?php include "include/header.php" ;
+
+$product_id="";
+$product_name="";
+$product_price="";
+$category_id="SelectPlease";
+$status="";
+$display="";
+$image="";
+
+if(isset($_GET['PID']) || !empty($_GET['PID']) )
+		{
+			$result=$admin->select_products_id($_GET['PID']);
+			if($result){
+				foreach($result as $row) {
+						$product_id=$row['product_id'];
+						$product_name=$row['product_name'];
+						$product_price=$row['product_price'];
+						$category_id=$row['category_id'];
+						$status=$row['status'];
+						$display=$row['display'];
+						$image=$row['image'];
+						}
+		
+		
+		
+		}
+		}
+          
+          
 ?>
  
 
@@ -54,6 +83,7 @@ function UpdateCategories(){
     //$("button").click(function(){
         $.ajax({url: "ajax/get-categories.php", success: function(result){
             $("#category_id").html(result);
+             $('#category_id').val('<?php echo $category_id; ?>').change();;
         }});
    // });
 }
@@ -72,6 +102,7 @@ function UpdateCategories(){
 			<div class="modal-dialog">
 			
 										<form id="DoAddCategory" role="form" method="post" action="do-add-proudct.php"  enctype="multipart/form-data">
+	
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" ><span >&times;</span></button>
@@ -86,7 +117,7 @@ function UpdateCategories(){
 										  <div class="form-group row">
 			    								<label class="col-lg-2" for="category">Category:</label>
 			    								<div class="col-lg-10" >
-			    								<input  type="text" class="form-control col-lg-9" id="category" name="category_name"></div>
+			    								<input  type="text" class="form-control col-lg-9" id="category" name="category_name" required placeholder="Categoury"></div>
 			  								</div>
 					
 								
@@ -103,16 +134,23 @@ function UpdateCategories(){
 				</form>				
 			</div>
 		</div>
-<!-- ------------------------------------------------------------------------------- -->
+<!-- ------------------------------------------------------------------------------- 
 
+$product_id="";
+="";
+$product_price="";
+$category_id="";
+$status="";
+$display="";
+$image="";-->
 
 <div class="form-horizontal">
 <div id="result"></div>
 <form role="form" class="form-horizontal" id="DoAddProudct"  action="do-add-product.php" method="post" ><br /><br />
-
+<?php echo '<input  type="hidden" class="form-control col-lg-9" id="product_id" name="product_id" value="'.$product_id.'" required placeholder="product_id">'; ?>
 	<div class="form-group row">
 			<label class="col-lg-2" for="product_name">product:</label>
-			<div class="col-lg-10" ><input  type="text" class="form-control col-lg-9" id="product_name" name="product_name"></div>
+			<div class="col-lg-10" ><input  type="text" class="form-control col-lg-9" id="product_name" name="product_name" required placeholder="Product Name" value="<?php echo $product_name; ?>"></div>
 	</div>
 
 
@@ -121,7 +159,7 @@ function UpdateCategories(){
 
 	<div class="form-group row">
 			<label class="col-lg-2" for="product_price">Price:</label>
-			<div class="col-lg-10" ><input  type="text" class="form-control col-lg-9" id="product_price" name="product_price"></div>
+			<div class="col-lg-10" ><input  type="text" class="form-control col-lg-9" id="product_price" name="product_price" required placeholder="Product Price" value="<?php echo $product_price; ?>"></div>
 	</div>
 	
 	
@@ -130,7 +168,7 @@ function UpdateCategories(){
 	
 	
 	<div class="form-group row">
-			<label class="col-lg-2" for="fname">Category:</label>
+			<label class="col-lg-2" for="Category">Category:</label>
 			<div class="col-lg-10" > <div class="col-lg-7" >
 			<select name="category_id"  id="category_id" class="form-control">
 				<option value="SelectPlease">Select Category</option>
@@ -139,7 +177,12 @@ function UpdateCategories(){
 	</div>
 	<div class="form-group row">
 			<label class="col-lg-2" for="proudct_image">Product Picture:</label>
-			<div class="col-lg-10" ><input  type="file" class="form-control col-lg-9" id="proudct_image" name="proudct_image"></div>
+			<div class="col-lg-5" >
+			<input  type="file" class="form-control col-lg-9" id="proudct_image" name="proudct_image">
+			</div>
+			<div class="col-lg-5" >
+			<img style="width:100px;" class="img-rounded img-responsive" src="<?php echo $image; ?>" />
+			</div>
 	</div>
 
 		

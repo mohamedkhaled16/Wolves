@@ -18,7 +18,7 @@ ini_set('display_errors', 1);
         $error='';
 
 	if(!isset($_POST['product_name']) || empty($_POST['product_name']) ){$error.="Please Enter Proudct Name <br/>";}
-		else {$product_name=$_POST['product_name']; echo "Wrong";}
+		else {$product_name=$_POST['product_name'];}
 	if(!isset($_POST['product_price']) || empty($_POST['product_price']) ){$error.="Please Enter Proudct Price <br/>";}
 		else {$product_price=$_POST['product_price']; }
 	if(!isset($_POST['category_id']) || empty($_POST['category_id']) ){$error.="Please Select Proudct Category <br/>";}
@@ -64,9 +64,10 @@ ini_set('display_errors', 1);
           if (is_uploaded_file($_FILES['proudct_image']['tmp_name']))
           {
             $nameimg = time().$_FILES['proudct_image']['name'];
-            $Filename = 'uploads/'.$nameimg;
+            $Filename = __DIR__.'/../uploads/'.$nameimg;
             if (!move_uploaded_file($_FILES['proudct_image']['tmp_name'], $Filename))
             {
+           // echo "$Filename";
             echo '<div class="alert alert-danger"><strong>Error!</strong>';
             echo 'Problem: Could not move file to destination directory';
             echo '</div>';
@@ -74,8 +75,10 @@ ini_set('display_errors', 1);
             }
           }
            $data =array("product_name"=>"{$product_name}","product_price"=>"{$product_price}","category_id"=>"{$category_id}","status"=>"{$status}","display"=>"{$display}","image"=>"{$Filename}");
-         var_dump($data);
-          $result=$admin->insert_product($data);  
+
+         $result=false;
+         if(isset($_POST['product_id']) && !empty($_POST['product_id'])){$result=$admin->product_update($data,$_POST['product_id']); } 
+         else{$result=$admin->insert_product($data); } 
           if ($result != false) {    
             echo '<div class="alert alert-success"><strong>Success!</strong> User had benn added...</div>';
          }else{
