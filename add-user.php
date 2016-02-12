@@ -1,6 +1,25 @@
 <?php 
     include "include/header.php";
  ?>
+<script type="text/javascript">
+$(document).ready(function (e){
+$("#DoAddUser").on('submit',(function(e){
+e.preventDefault();
+$.ajax({
+url: "ajax/do-add-user.php",
+type: "POST",
+data:  new FormData(this),
+contentType: false,
+cache: false,
+processData:false,
+success: function(data){
+$("#result").html(data);
+},
+error: function(){} 	        
+});
+}));
+});
+</script>
 <!-- Creating the text -->
 <div class="row">
     <div class="col-sm-1"></div>
@@ -13,90 +32,8 @@
 <!-- Creating the form -->
 <div class="row">
     <div class="container">
-<?php  if(isset($_POST['login'])){
-        $email=$_POST['email'];   
-        $password=$_POST['password'];   
-        $error='';
-        if(empty($password)){
-            $error.="Please Enter your password <br/>";
-        }
-        if(empty($email)){
-          $error.="Please Enter your email <br/>";
-        }else{
-            if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-            {
-              $error.="Please Enter your email not validate <br/>";
-            }else{
-              $res=$admin->checkEmail($email);
-               if($res==1){
-                $error.="This Email Exist <br/>";
-               }
-            }
-        }
-        if(empty($password)){
-          $error.="Please Enter your password <br/>";
-        }
-        if(empty($cpassword)){
-          $error.="Please Enter your confirm password <br/>";
-        }
-        if(empty($roomNo)){
-          $error.="Please Enter your room no <br/>";
-        }if(empty($ext)){
-          $error.="Please Enter your ext <br/>";
-        }
-       $accepted_image_types = array("image/gif", "image/jpg", "image/jpeg", "image/pjpeg", "image/png", "image/x-png");
-       if(!empty($_FILES['imageuser']['tmp_name'])){
-        if ($_FILES['imageuser']['error'] > 0)
-        {
-        switch ($_FILES['imageuser']['error'])
-        {
-        case 1: $error.= 'File exceeded upload_max_filesize';
-        break;
-        case 2: $error.= 'File exceeded max_file_size';
-        break;
-        case 3: $error.= 'File only partially uploaded';
-        break;
-        case 4: $error.= 'No file uploaded';
-        break;
-        case 6: $error.= 'Cannot upload file: No temp directory specified';
-        break;
-        case 7: $error.= 'Upload failed: Cannot write to disk';
-        break;
-        }
-        echo $_FILES['imageuser']['type'];
-        }elseif (!in_array($_FILES['imageuser']['type'], $accepted_image_types ))
-        {
-        $error.= 'Problem: file is not type';
-        #exit;
-        }
-          }
-        if(!empty($error)){
-        echo "<p class='result alert-danger' style='display:block'>".$error."<br/><a href='add-user.php'>Please try again</a></p>";
-        }else{
-          echo "<div class='alert-danger result'  style='display:block'> ";
-          if (is_uploaded_file($_FILES['imageuser']['tmp_name']))
-          {
-            $nameimg = time().$_FILES['imageuser']['name'];
-            $Filename = 'uploads/'.$nameimg;
-            if (!move_uploaded_file($_FILES['imageuser']['tmp_name'], $Filename))
-            {
-            echo 'Problem: Could not move file to destination directory';
-            exit;
-            }
-          }
-          $password = md5($password);
-          //adding user data
-           $data =array("name"=>"{$name}","email"=>"{$email}","password"=>"{$password}","image"=>"{$nameimg}","room_no"=>"{$roomNo}","ext"=>"{$ext}","user_type"=>'user');
-          $result=$admin->insert_user($data);  
-          if ($result != false) {    
-            echo "<p class='alert-danger result' style='display:block'>user added thanks</p>";
-         }else{
-          echo"<p class='alert-danger result' style='display:block'> cant add this user</p>";
-         }
-   }
-   echo"<p class='clearfix'></p>";
- }else{ ?>
-        <form class="form-horizontal" role="form" method ="post" onsubmit="if(checkuser()!=1){return false}" id="adduser" action="add-user.php" enctype="multipart/form-data">
+<div id="result"></div>
+        <form class="form-horizontal" role="form" method ="post" id="DoAddUser" action="add-user.php" enctype="multipart/form-data">
       <!--      <div class="result"></div> -->
             <!-- Name -->   
             <div class="result alert-danger col-sm-10 col-sm-offset-2 pull-right"></div>
@@ -159,6 +96,6 @@
         </form>
     </div>
 </div>
-<?php } //end else?>
+
 <?php include "include/footer.php"; ?>
 
