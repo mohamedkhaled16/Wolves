@@ -101,6 +101,7 @@ class dbmethods {
             $editFieldsSql = implode($editFieldsArray, ",");
         }
         $sql = "UPDATE " . $table . " SET " . $editFieldsSql . " WHERE " . $condition;
+        
         $result = mysqli_query($this->link, $sql);
         return $result;
     }
