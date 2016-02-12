@@ -14,16 +14,12 @@
 <!-- Creating the form -->
 <div class="row">
     <div class="container">
-<?php  if(isset($_POST['submit'])){
-        $name=$_POST['name'];   
+<?php  if(isset($_POST['login'])){
         $email=$_POST['email'];   
         $password=$_POST['password'];   
-        $cpassword=$_POST['cpassword'];   
-        $roomNo=$_POST['roomNo'];   
-        $ext=$_POST['ext'];   
         $error='';
-        if(empty($name)){
-            $error.="Please Enter your Name <br/>";
+        if(empty($password)){
+            $error.="Please Enter your password <br/>";
         }
         if(empty($email)){
           $error.="Please Enter your email <br/>";

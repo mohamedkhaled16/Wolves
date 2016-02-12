@@ -1,7 +1,7 @@
 <?php include "include/header.php" ;?>
 <!-- ---------------------------------------------------------------------------- -->
 <div>
-	<center><h1> Add Product</h1></center>
+	<center><h1> Login</h1></center>
 </div>
 <hr />
 <br />
@@ -10,18 +10,18 @@
 <!-- ------------------------------------------------------------------------------------- -->
 
 <div class="form-horizontal">
-		<form role="form" class="form-horizontal">
+		<form role="form" class="form-horizontal" action="">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="mail">E-Mail</label>
 				<div class="col-sm-10">
-					<input type="text" name="mail" id="mail" class="form-control">
+					<input type="text" name="email" id="email" class="form-control">
 										
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="mypass">password</label>
 				<div class="col-sm-10">
-					<input type="password" name="mypass" id="mypass" class="form-control">
+					<input type="password" name="password" id="mypass" class="form-control">
 				</div>	
 			</div>
 			<div class="form-group">
@@ -30,10 +30,9 @@
 					<label for="">
 						<input type="checkbox" name="myCheck" id="">remember me 
 					</label>
-				</div> 
-				
+				</div> 			
 
-				<input type="button" class="btn btn-primary col-sm-offset-2"value="log in">
+				<input type="submit" class="btn btn-primary col-sm-offset-2" name="login" value="log in">
 
 			</div>
 		</form>

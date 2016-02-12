@@ -60,3 +60,38 @@
 
 </nav>
 
+<?php
+ if(isset($_POST['submit'])){
+    $email=strip_tags(trim($_POST['email']));
+    $pass=md5($_POST['password']);
+    $res=$user->checkExsitUser($email); 
+    while($userd=mysqli_fetch_array($res)){
+      $user_id=$userd['user_id'];
+      $user_name=$userd['username'];
+      $usertype=$userd['usertype'];
+      $userpass=$userd['password'];
+    }
+    if(!empty($usertype)){
+      if($userpass==$pass){
+        $_SESSION['user_id']=$user_id;
+        $_SESSION['name']=$user_name;
+        $_SESSION['usertype']=$usertype;
+        if(!empty($_POST['remember'])){
+         if($_POST['remember']=='on'){
+            setcookie("user_id", $_SESSION['user_id'], time()+3600);
+          }
+        }
+      }else{
+        echo"<p class='error red'>password not validate  try again</p>";
+        $flag=0; 
+      }
+    }else{
+      echo"<p class='error red'>email not exsits  try again</p>";
+      $flag=0; 
+    }
+  }else{
+     if(empty($_SESSION['user_id'])&&basename(__FILE__)=='login.php'){
+    	   header('location:login.php');
+     }
+  }
+?>
