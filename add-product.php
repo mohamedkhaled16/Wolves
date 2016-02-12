@@ -1,5 +1,7 @@
 <?php include "include/header.php" ;
 ?>
+
+
 <script type="text/javascript">
 $(document).ready(function (e){
 $("#DoAddProudct").on('submit',(function(e){
@@ -12,12 +14,13 @@ contentType: false,
 cache: false,
 processData:false,
 success: function(data){
-alert(data);
+$("#result").html(data);
 },
 error: function(){} 	        
 });
 }));
 });
+
 $(document).ready(function (e){
 $("#DoAddCategory").on('submit',(function(e){
 e.preventDefault();
@@ -30,6 +33,7 @@ cache: false,
 processData:false,
 success: function(data){
 if(data == "1"){
+
 UpdateCategories();
 $('#Add-Category-modal').modal('hide');}
 else {alert(data);}
@@ -57,7 +61,7 @@ function UpdateCategories(){
 
 <!-- ---------------------------------------------------------------------------- -->
 <div>
-	<h1> Login</h1>
+	<h1> Add Product</h1>
 </div>
 <!-- ---------------------------------------------------------------------------- -->
 
@@ -103,6 +107,7 @@ function UpdateCategories(){
 
 
 <div class="form-horizontal">
+<div id="result"></div>
 <form role="form" class="form-horizontal" id="DoAddProudct"  action="do-add-product.php" method="post" ><br /><br />
 
 	<div class="form-group row">

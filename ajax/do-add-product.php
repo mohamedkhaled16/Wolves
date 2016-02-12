@@ -25,6 +25,7 @@ ini_set('display_errors', 1);
 		else {$category_id=$_POST['category_id']; }
 		
 	$accepted_image_types = array("image/gif", "image/jpg", "image/jpeg", "image/pjpeg", "image/png", "image/x-png");
+	if(is_uploaded_file($_FILES['proudct_image']['tmp_name']) && is_array($_FILES)) {
        if(!empty($_FILES['proudct_image']['tmp_name'])){
 		if ($_FILES['proudct_image']['error'] > 0)
 		{
@@ -50,22 +51,25 @@ ini_set('display_errors', 1);
 			$error.= 'Problem: file is not image';
 			#exit;
 		}
-          }
+          }else {$error.="Please Add Image...";}}
+          else {$error.="Please Add Image...";}
 	
 
 
         if(!empty($error)){
-        echo "dsadsa";
-        echo "<p class='result alert-danger' style='display:block'>".$error."<br/><a href='add-user.php'>Please try again</a></p>";
+        echo '<div class="alert alert-danger"><strong>Error!</strong>';
+        echo $error;
+        echo '</div>';
         }else{
-          echo "<div class='alert-danger result'  style='display:block'> ";
           if (is_uploaded_file($_FILES['proudct_image']['tmp_name']))
           {
             $nameimg = time().$_FILES['proudct_image']['name'];
             $Filename = 'uploads/'.$nameimg;
             if (!move_uploaded_file($_FILES['proudct_image']['tmp_name'], $Filename))
             {
+            echo '<div class="alert alert-danger"><strong>Error!</strong>';
             echo 'Problem: Could not move file to destination directory';
+            echo '</div>';
             exit;
             }
           }
@@ -73,10 +77,12 @@ ini_set('display_errors', 1);
          var_dump($data);
           $result=$admin->insert_product($data);  
           if ($result != false) {    
-            echo "<p class='alert-danger result' style='display:block'>user added thanks</p>";
+            echo '<div class="alert alert-success"><strong>Success!</strong> User had benn added...</div>';
          }else{
-          echo"<p class='alert-danger result' style='display:block'> cant add this user</p>";
-          array_map('unlink', glob($Filename)); 
+		 echo '<div class="alert alert-danger"><strong>Error!</strong>';
+		 echo"Can't add this user...";
+		 echo '</div>';
+		  array_map('unlink', glob($Filename)); 
          }
    }
 

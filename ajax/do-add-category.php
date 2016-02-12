@@ -6,19 +6,21 @@ ini_set('display_errors', 1);
    
 	$category_name="";
 
-        $error='';
+        $error='empty';
 
-	if(!isset($_POST['category_name']) || empty($_POST['category_name']) ){$error.="Please Enter Category Name <br/>";}
+	if(!isset($_POST['category_name']) || empty($_POST['category_name']) ){$error.="Please Enter Category Name";}
 		else {$category_name=$_POST['category_name']; }
 	
 
 
-        if(!empty($error)){
+        if($error != "empty"){
 
         echo $error;
         }else{
+        
            $data =array("category_name"=>"{$category_name}");
           $result=$admin->insert_category($data);  
+          echo "kkk";
           if ($result != false) {    
             echo "1";
          }else{
