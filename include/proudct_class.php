@@ -38,12 +38,19 @@ class ProudctDB{
 	}
 	
 	
-		function change_product_status_unavail($id){
+	function change_product_status_unavail($id){
       $query=$GLOBALS['db']->edit("products",array("status"=>"unavailable"),"product_id=".$id);
       return $query;
 	}
 	
-	
+	function product_update($array,$id){
+      $query=$GLOBALS['db']->edit("products",$array,"product_id=".$id);
+      return $query;
+	}
+		function select_products_id($id){
+      $query=$GLOBALS['db']->select("products",array(),"product_id=".$id);
+      return $query;
+	}
 	
 
 }
