@@ -7,7 +7,7 @@ class Database {
 	private static $_instance; //The single instance
 	private $_host = "localhost";
 	private $_username = "root";
-	private $_password = "iti";
+	private $_password = "";
 	private $_database = "cafeteria";
 	/*
 	Get an instance of the Database
