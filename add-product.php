@@ -23,7 +23,7 @@ if(isset($_GET['PID']) || !empty($_GET['PID']) )
 						}
 		
 		
-		echo '<input  type="hidden" class="form-control col-lg-9" id="product_id" name="product_id" value="'.$product_id.'" required placeholder="product_id">';
+		
 		}
 		}
           
@@ -102,6 +102,7 @@ function UpdateCategories(){
 			<div class="modal-dialog">
 			
 										<form id="DoAddCategory" role="form" method="post" action="do-add-proudct.php"  enctype="multipart/form-data">
+	
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" ><span >&times;</span></button>
@@ -146,7 +147,7 @@ $image="";-->
 <div class="form-horizontal">
 <div id="result"></div>
 <form role="form" class="form-horizontal" id="DoAddProudct"  action="do-add-product.php" method="post" ><br /><br />
-
+<?php echo '<input  type="hidden" class="form-control col-lg-9" id="product_id" name="product_id" value="'.$product_id.'" required placeholder="product_id">'; ?>
 	<div class="form-group row">
 			<label class="col-lg-2" for="product_name">product:</label>
 			<div class="col-lg-10" ><input  type="text" class="form-control col-lg-9" id="product_name" name="product_name" required placeholder="Product Name" value="<?php echo $product_name; ?>"></div>
