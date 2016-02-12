@@ -43,20 +43,29 @@
     if($("#orders #order_pro_" + id).length == 0) {
       var pro_name=$("#prod_"+id).attr("data");
       var price=$("#price_"+id).attr("data");
-      $("#orders").append("<li id='order_pro_"+id+"'><span id='pro_name_"+id+"' class='col-md-4'>"+pro_name+"</span><span id='count_"+id+"' class='col-md-1'>1</span><span class='col-md-2'><span class='glyphicon glyphicon-plus col-md-12' onclick='incremaent("+id+")'></span><span class='glyphicon glyphicon-minus col-md-12'  onclick='decremaent("+id+")'></span></span><span class='col-md-4' id='price_pro_"+id+"'>"+price+" EGP</span><span class='glyphicon glyphicon-trash col-md-1'  onclick='deleteli("+id+")'></span><p class='clearfix'></p></li>");
+      $("#orders").append("<li id='order_pro_"+id+"'><span id='pro_name_"+id+"' class='col-md-4'>"+pro_name+"</span><span id='count_"+id+"' class='col-md-1'>1</span><span class='col-md-2'><span class='glyphicon glyphicon-plus col-md-12' onclick='incremaent("+id+")'></span><span class='glyphicon glyphicon-minus col-md-12'  onclick='decremaent("+id+")'></span></span><span class='col-md-4' id='price_pro_"+id+"' data='"+price+"'>"+price+" EGP</span><span class='glyphicon glyphicon-trash col-md-1'  onclick='deleteli("+id+")'></span><p class='clearfix'></p></li>");
     }
   }
   function decremaent(id){
     var count=$("#count_"+id).text();
+    var price=$("#price_"+id).attr("data");
     if(count!='1'){
      count=parseInt(count)-1;
+     var total_pro=parseInt(price)*count;
+      $("#count_"+id).text(count);
+      $("#price_pro_"+id).text(total_pro+" EGP");
+      $("#price_pro_"+id).attr('data',total_pro);
+
     }
-    $("#count_"+id).text(count);
   }
   function incremaent(id){
+    var price=$("#price_"+id).attr("data");
     var count=$("#count_"+id).text();
      count =parseInt(count)+1;
+    var total_pro=parseInt(price)*count;
     $("#count_"+id).text(count);
+    $("#price_pro_"+id).text(total_pro+" EGP");
+    $("#price_pro_"+id).attr('data',total_pro);
   }
   function deleteli(id){
     $('#order_pro_'+id).remove();
