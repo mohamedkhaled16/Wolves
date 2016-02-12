@@ -18,6 +18,12 @@ class sharedmethods{
 	            return $res;
 	        }	
 	 }
+	 function selectUsersRooms(){
+	    $data=array('DISTINCT room_no ');
+		$res=$GLOBALS['db']->select("users",$data,"");
+		//var_dump($res);
+		return $res;
+	 }
 }
 
 ?>

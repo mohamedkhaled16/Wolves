@@ -54,8 +54,50 @@ body .btn-group-justified>.btn-group .dropdown-menu{
  border-radius: 5px;
  border:solid 1px #ccc;
 }.left_order{
-
 	border:solid 1px #ccc;
+	border-radius: 5px;
+	padding: 4px;
+    min-height: 200px;
 }.right_order{
-	border:solid 1px #ccc;
+}.right_order img{
+   width:100px;
+   height: 100px;
+   border-radius: 5px;
+}.right_order .prod{
+	cursor: pointer;
+	position: relative;
+}.prod .badge{
+	position: absolute;
+    background: #eee;
+    color: #000;
+    border: solid 1px #ccc;
+    right: 6%;
+    top: 0%;
+    padding: 6px;
+}.prod{
+	margin-bottom: 40px; 
+	border-right: solid 1px #ccc;
+}.left_order select,.left_order textarea{
+   width:80%;
+   margin: 0 auto;
+}#orders li{
+	list-style: none;
+	padding-top: 5px;
+    padding-bottom: 5px;
+	text-align: left;
+	font-style: 16px;
+}#orders li span:nth-child(2){
+}#orders li span:nth-child(3){
+}#orders li span{
+	display: inline-block;	
+}#orders .glyphicon{
+	font-size: 13px;
+	cursor: pointer;
+}#orders{
+	padding: 0px;
+	margin: 0px;
+}#orders li .col-md-3,#orders li .col-md-4,#orders li .col-md-2,#orders li .col-md-1{
+	padding-right: 0px;
+	padding-left: 0px; 
 }
+
