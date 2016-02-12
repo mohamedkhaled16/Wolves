@@ -1,6 +1,5 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 require_once(__DIR__.'/dbconn.php');
 class dbmethods {
     private $db;// = Database::getInstance();

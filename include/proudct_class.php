@@ -8,6 +8,10 @@ class ProudctDB{
       $query=$GLOBALS['db']->select("categories");
       return $query;
 	}
+	function selectProducts(){
+	  $query=$GLOBALS['db']->select("products");
+      return $query;
+	}
 	
 	
 	function insert_category($data){

@@ -53,4 +53,9 @@ body .btn-group-justified>.btn-group .dropdown-menu{
  height: 60px;
  border-radius: 5px;
  border:solid 1px #ccc;
+}.left_order{
+
+	border:solid 1px #ccc;
+}.right_order{
+	border:solid 1px #ccc;
 }
