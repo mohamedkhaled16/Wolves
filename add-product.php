@@ -7,7 +7,7 @@ $(document).ready(function (e){
 $("#DoAddProudct").on('submit',(function(e){
 e.preventDefault();
 $.ajax({
-url: "do-add-product.php",
+url: "ajax/do-add-product.php",
 type: "POST",
 data:  new FormData(this),
 contentType: false,
@@ -25,7 +25,7 @@ $(document).ready(function (e){
 $("#DoAddCategory").on('submit',(function(e){
 e.preventDefault();
 $.ajax({
-url: "do-add-category.php",
+url: "ajax/do-add-category.php",
 type: "POST",
 data:  new FormData(this),
 contentType: false,
@@ -52,7 +52,7 @@ $(document).ready(function(){UpdateCategories();});
 
 function UpdateCategories(){
     //$("button").click(function(){
-        $.ajax({url: "get-categories.php", success: function(result){
+        $.ajax({url: "ajax/get-categories.php", success: function(result){
             $("#category_id").html(result);
         }});
    // });
