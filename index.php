@@ -1,13 +1,5 @@
-<?php
+<?php include("include/header.php"); ?>
 
-   include 'include/dblib.php'; 
-   $db = new dbmethods();
-   $data=$db->select("users","","");
-   var_dump($data);
-   echo $data[0]['user_id'];
-   foreach ($data as $d) {
-   	 echo "{$d['user_id']}";
-   }
+<div class="container" style="min-height:400px;"><h4>Empty Page</h4></div>
 
-?>
-
+<?php include("include/footer.php"); ?>

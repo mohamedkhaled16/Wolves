@@ -2,7 +2,6 @@
     include "include/header.php";
  ?>
 <!-- Creating the text -->
-
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-3	">
@@ -24,9 +23,6 @@
         if(empty($email)){
           $error.="Please Enter your email <br/>";
         }else{
-          // $reg='/^[a-zA-Z_.0-9]+@[a-z0-9]+\.[a-z]{2,3}|\.[a-z]{2}$/i';  
-           //$v=preg_match($reg,trim($email));
-           //if(!preg_match($reg,trim($email)))
             if(!filter_var($email, FILTER_VALIDATE_EMAIL))
             {
               $error.="Please Enter your email not validate <br/>";
@@ -36,7 +32,6 @@
                 $error.="This Email Exist <br/>";
                }
             }
-
         }
         if(empty($password)){
           $error.="Please Enter your password <br/>";
@@ -53,7 +48,7 @@
        if(!empty($_FILES['imageuser']['tmp_name'])){
         if ($_FILES['imageuser']['error'] > 0)
         {
-        switch ($_FILES['imageuser'][‘error’])
+        switch ($_FILES['imageuser']['error'])
         {
         case 1: $error.= 'File exceeded upload_max_filesize';
         break;
@@ -69,7 +64,7 @@
         break;
         }
         echo $_FILES['imageuser']['type'];
-            }elseif (!in_array($_FILES['imageuser']['type'], $accepted_image_types ))
+        }elseif (!in_array($_FILES['imageuser']['type'], $accepted_image_types ))
         {
         $error.= 'Problem: file is not type';
         #exit;
@@ -90,6 +85,7 @@
             }
           }
           $password = md5($password);
+          //adding user data
            $data =array("name"=>"{$name}","email"=>"{$email}","password"=>"{$password}","image"=>"{$nameimg}","room_no"=>"{$roomNo}","ext"=>"{$ext}","user_type"=>'user');
           $result=$admin->insert_user($data);  
           if ($result != false) {    
@@ -156,12 +152,8 @@
             <!-- Submit ** Reset -->              
             <div class="form-group">        
                 <div class="col-sm-offset-2 col-sm-10">
-                    <!-- <button type="submit" class="btn btn-default">Submit</button> -->
-     <!---               <input type="submit" value="Save" id="submit" name="submit"  onclick="if(checkuser()){  $('#adduser').submit();}" class="btn btn-success"/>-->
                     <input type="submit" value="Save" id="submit" name="submit"   class="btn btn-success"/>
-
                     <input type="Reset"   value="Reset"   class="btn btn-danger"/>
-
                 </div>
             </div>
         </form>

@@ -46,4 +46,11 @@ body .btn-group-justified>.btn-group .dropdown-menu{
 	display: none;
     padding: 10px;
     border-radius: 5px
+}.user_data{
+ margin: 10px;
+ }.user_data img{ 
+ width: 60px;
+ height: 60px;
+ border-radius: 5px;
+ border:solid 1px #ccc;
 }
