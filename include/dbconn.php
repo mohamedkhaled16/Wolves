@@ -6,11 +6,7 @@ class Database {
 	private $_connection;
 	private static $_instance; //The single instance
 	private $_host = "localhost";
-<<<<<<< HEAD
 	private $_username = "root";
-=======
-	private $_username = "";
->>>>>>> e274918d28adea9cd21284057e32adf6c6e766a2
 	private $_password = "";
 	private $_database = "cafeteria";
 	/*

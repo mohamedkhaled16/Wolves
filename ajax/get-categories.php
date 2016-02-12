@@ -1,7 +1,8 @@
 <?php 
+echo __DIR__;
    error_reporting(E_ALL);
    ini_set('display_errors', 1);
- require_once "../include/classes_header.php" ;
+ require_once __DIR__."/../include/classes_header.php" ;
 
           $result=$admin->select_categories();
           
