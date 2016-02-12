@@ -2,7 +2,7 @@
    
    error_reporting(0);
 ini_set('display_errors', 1);
-   include "include/classes_header.php";
+   include __DIR__."/../include/classes_header.php";
    
 	$category_name="";
 
@@ -20,7 +20,6 @@ ini_set('display_errors', 1);
         
            $data =array("category_name"=>"{$category_name}");
           $result=$admin->insert_category($data);  
-          echo "kkk";
           if ($result != false) {    
             echo "1";
          }else{
