@@ -62,5 +62,6 @@
 <div class="user_data pull-right">
 	<img src="uploads/<?php echo $user[0]['image'] ;?>" alt=''/>
 	<a href=""><?php echo $user[0]['name'] ;?></a>  <!-- goto user page edit --> 
+	<a href="logout.php">| Logout</a>
 </div>
 
