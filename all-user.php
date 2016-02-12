@@ -68,7 +68,7 @@ if ($TBcontent->num_rows > 0) {  //check if the number of rows which is an attri
                                                          ///getting the number of the elements
                  /*echo "<td><a href='UPDATE_mysql.php?id=".$row['UID']."' class='btn btn-success' role='button'>Edit</a>  <a href='delete_mysql.php?id=".$row['UID']."' class='btn btn-danger' role='button'>Delete</a></td>";*/
 
-                 echo "<td><a href='all-user-edit.php?id=".$row['user_id']."' class='btn btn-success' role='button'>Edit</a>  <a href='#' class='btn btn-danger' role='button'>Delete</a></td>";
+                 echo "<td><a href='all-user-edit.php?id=".$row['user_id']."' class='btn btn-success' role='button'>Edit</a>  <a href='all-user-delete.php?id=".$row['user_id']."' class='btn btn-danger' role='button'>Delete</a></td>";
  
                  $Total_Users=$Total_Users+1; 
            
