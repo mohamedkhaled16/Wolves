@@ -21,6 +21,7 @@
         <?php  } ?>
        </select>
       <hr/>
+      <div id="total"></div>
       <input type="button" class="btn btn-primary" name="confirm" value="Confirm" id="button"/>
     </form>
   </div>
@@ -39,11 +40,24 @@
  <?php }else{echo "you dont have permission to this page";} ?>
 </div>
 <script type="text/javascript">
+  function calculateall(){
+    var priceall=0;
+    $("#orders li").each(function(){
+      var id=$(this).attr('data');
+      var p=$("#price_pro_"+id).attr('data');
+      var c=$("#count_"+id).text();
+      var to=parseInt(p)*parseInt(c);
+      priceall +=to;
+      $("#total").html(priceall+" EGP");
+    });
+  } 
   function addproduct (id) {
     if($("#orders #order_pro_" + id).length == 0) {
       var pro_name=$("#prod_"+id).attr("data");
       var price=$("#price_"+id).attr("data");
-      $("#orders").append("<li id='order_pro_"+id+"'><span id='pro_name_"+id+"' class='col-md-4'>"+pro_name+"</span><span id='count_"+id+"' class='col-md-1'>1</span><span class='col-md-2'><span class='glyphicon glyphicon-plus col-md-12' onclick='incremaent("+id+")'></span><span class='glyphicon glyphicon-minus col-md-12'  onclick='decremaent("+id+")'></span></span><span class='col-md-4' id='price_pro_"+id+"' data='"+price+"'>"+price+" EGP</span><span class='glyphicon glyphicon-trash col-md-1'  onclick='deleteli("+id+")'></span><p class='clearfix'></p></li>");
+      $("#orders").append("<li id='order_pro_"+id+"' data='"+id+"' ><span id='pro_name_"+id+"' class='col-md-4'>"+pro_name+"</span><span id='count_"+id+"' class='col-md-1 no_order'>1</span><span class='col-md-2'><span class='glyphicon glyphicon-plus col-md-12' onclick='incremaent("+id+")'></span><span class='glyphicon glyphicon-minus col-md-12'  onclick='decremaent("+id+")'></span></span><span class='col-md-4 price_order' id='price_pro_"+id+"' data='"+price+"'>"+price+" EGP</span><span class='glyphicon glyphicon-trash col-md-1'  onclick='deleteli("+id+")'></span><p class='clearfix'></p></li>");
+      calculateall();
+      
     }
   }
   function decremaent(id){
@@ -55,6 +69,7 @@
       $("#count_"+id).text(count);
       $("#price_pro_"+id).text(total_pro+" EGP");
       $("#price_pro_"+id).attr('data',total_pro);
+      calculateall();
 
     }
   }
@@ -66,9 +81,11 @@
     $("#count_"+id).text(count);
     $("#price_pro_"+id).text(total_pro+" EGP");
     $("#price_pro_"+id).attr('data',total_pro);
+     calculateall();
   }
   function deleteli(id){
     $('#order_pro_'+id).remove();
+     calculateall();
   }
 </script>
 <?php include("include/footer.php"); ?>
