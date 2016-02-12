@@ -78,8 +78,33 @@ class dbmethods {
         
         //echo $sql;
         $result = mysqli_query($this->link, $sql);
+         //   printf("Errormessage: %s\n", mysqli_error($this->link));
+
         return $result;
     }
+
+public function addId($table = "", $inFields = array()) {
+        if ($table == "" || empty($inFields))
+            return false;
+        $indexArray = array();
+        $valueArray = array();
+        if (!empty($inFields)) {
+            foreach ($inFields as $index => $value) {
+                $indexArray[] = $index;
+                $valueArray[] = mysqli_real_escape_string($this->link, $value);
+            }
+        }
+        $inFieldsSql = "(" . implode($indexArray, ",") . ")";
+        $inValuesSql = "('" . implode($valueArray, "','") . "')";
+        $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
+        
+        //echo $sql;
+        $result = mysqli_query($this->link, $sql);
+         //   printf("Errormessage: %s\n", mysqli_error($this->link));
+           
+        return mysqli_insert_id($this->link);
+    }
+
 
     /* =================================================================================================     */
     /*

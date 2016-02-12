@@ -6,15 +6,18 @@
   	  $data=$order->selectProducts() ;
       $room=$shared->selectUsersRooms() ;
    ?>
+      <div class="result error"></div>
+
   <div class="col-md-3 pull-left left_order">
      <h3>orders</h3>
      <hr/>
-     <form id="user_order">
+
+     <form id="send_user_order" method="post">
        <ul id="orders" class="col-md-12"></ul> 
        <div class="nodes">
-         <textarea class="nodes form-control" ></textarea><br/>
+         <textarea class="nodes form-control" name="nodes"></textarea><br/>
        </div>
-       <select class="form-control" >
+       <select class="form-control" name="room_number" id="room_number">
          <option value="">room number</option>
          <?php foreach ($room as $no) { ?>
          <option value="<?php echo $no['room_no'] ?>"><?php echo $no['room_no'] ?></option>
@@ -22,7 +25,7 @@
        </select>
       <hr/>
       <div id="total"></div>
-      <input type="button" class="btn btn-primary" name="confirm" value="Confirm" id="button"/>
+      <input type="button" class="btn btn-primary" name="confirm" value="Confirm" onclick="sendOrder()" id="button"/>
     </form>
   </div>
   <div class="col-md-9 pull-right right_order">
@@ -70,7 +73,6 @@
       $("#price_pro_"+id).text(total_pro+" EGP");
       $("#price_pro_"+id).attr('data',total_pro);
       calculateall();
-
     }
   }
   function incremaent(id){
@@ -87,5 +89,35 @@
     $('#order_pro_'+id).remove();
      calculateall();
   }
+ 
+
+  function sendOrder(){
+    $(".result").show();
+    if($("#send_user_order #room_number").val()==''||$("#orders li").length==0){
+        $(".result").html("<p class='error'>Please enter data<p>");   
+    }else{
+       var data=[];
+       $("#orders li").each(function(){
+          var id=$(this).attr('data');
+          var c=$("#count_"+id).text();
+          c=parseInt(c);
+          var pro=$("#price_"+id).attr('data');
+         var obj={'count':c,'id_prod':id,'price':pro};
+          data.push(obj);
+      });
+       var data2 = $('#send_user_order').serializeArray();
+       data2['orders']=data;
+      //  console.log(data2);
+       $.ajax({
+          url: "ajax/do-add-order.php",
+          type: "POST",
+          data:  $('#send_user_order').serialize()+"&orders="+JSON.stringify(data),
+          success: function(e){
+          $(".result").html(e);
+          },
+          error: function(e){          }           
+          });
+    }
+}
 </script>
 <?php include("include/footer.php"); ?>
