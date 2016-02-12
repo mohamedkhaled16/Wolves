@@ -1,7 +1,5 @@
 <?php include "include/header.php" ;
 ?>
-
-
 <script type="text/javascript">
 $(document).ready(function (e){
 $("#DoAddProudct").on('submit',(function(e){
@@ -20,7 +18,6 @@ error: function(){}
 });
 }));
 });
-
 $(document).ready(function (e){
 $("#DoAddCategory").on('submit',(function(e){
 e.preventDefault();
@@ -33,7 +30,6 @@ cache: false,
 processData:false,
 success: function(data){
 if(data == "1"){
-
 UpdateCategories();
 $('#Add-Category-modal').modal('hide');}
 else {alert(data);}
