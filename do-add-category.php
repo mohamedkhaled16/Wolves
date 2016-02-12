@@ -1,52 +1,34 @@
-<?php include "include/header.php" ;?>
+<?php 
+   
+   error_reporting(0);
+ini_set('display_errors', 1);
+   include "include/classes_header.php";
+   
+	$category_name="";
 
-<!-- ---------------------------------------------------------------------------- -->
-<div>
-	<h1> Add Product</h1>
-</div>
-<!-- ------------------------------------------------------------------------------- -->
+        $error='';
+
+	if(!isset($_POST['category_name']) || empty($_POST['category_name']) ){$error.="Please Enter Category Name <br/>";}
+		else {$category_name=$_POST['category_name']; }
+	
 
 
-<div class="form-horizontal">
-<form role="form" class="form-horizontal"  action="login.php" method="post" ><br /><br />
-			<div class="form-group col-sm-12">
-			<label class="control-label" for="product" >product</label>
-			<input  type="text" name="product" size="50" maxlength="10"  class="form-control" />
-			</div>
-			
-			<div class="form-group col-sm-12">
-			<label class="control-label" for="price" >Price</label>
-			 <input type="number" name="price" min="0" max="100" step="10" value="30" class="form-control" />
-			
-			</div>
-			
-			
-			
-			<div class="form-group col-sm-6">
-			<label class="control-label" for="category">category</label>
-			<select name="category" class="form-control">
-			  <option value="Hott">Hot</option>
-			  <option value="cold">Cold</option>
-			  <option value="diet">diet</option>
-			  <option value="fresh juice">fresh juice</option>
-			</select>
-							<a href="#">Add category</a>
-			</div>
-					<br>
-			
+        if(!empty($error)){
 
-			<div class="form-group col-sm-12">			
-			<label class="control-label" for="prod-pic" >Product Picture</label>
-			<input  type="file" name="img" size="50" maxlength="10"class="form-control" />
-			</div>
-			
-			
-			
-			<div class="form-group col-sm-12">
-			<input type="submit" value="Save" class="btn btn-primary" />
-			<input type="reset" value="Reset"class="btn btn-primary" />
-			</div><br /><br />
-					
-		</form>
+        echo $error;
+        }else{
+           $data =array("category_name"=>"{$category_name}");
+          $result=$admin->insert_category($data);  
+          if ($result != false) {    
+            echo "1";
+         }else{
+          echo"DB Error";
+         }
+   }
 
-<?php include "include/footer.php" ;?>
+
+
+
+
+
+?>

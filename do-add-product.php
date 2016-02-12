@@ -4,24 +4,24 @@
 ini_set('display_errors', 1);
    include "include/classes_header.php";
    
-   echo "kkok";
 
 
-if(isset($_POST['submit'])){
+
+
 
 	$product_name="";
 	$product_price="";
 	$category_id="";
 	$status="unavailable";
 	$display="yes";
-	$image="";
+	$Filename = "";
         $error='';
 
-	if(!isset($_POST['product_name']) && !empty($_POST['product_name']) ){$error.="Please Enter Proudct Name <br/>";}
-		else {$product_name=$_POST['product_name']; }
-	if(!isset($_POST['product_price']) && !empty($_POST['product_price']) ){$error.="Please Enter Proudct Price <br/>";}
+	if(!isset($_POST['product_name']) || empty($_POST['product_name']) ){$error.="Please Enter Proudct Name <br/>";}
+		else {$product_name=$_POST['product_name']; echo "Wrong";}
+	if(!isset($_POST['product_price']) || empty($_POST['product_price']) ){$error.="Please Enter Proudct Price <br/>";}
 		else {$product_price=$_POST['product_price']; }
-	if(!isset($_POST['category_id']) && !empty($_POST['category_id']) ){$error.="Please Select Proudct Category <br/>";}
+	if(!isset($_POST['category_id']) || empty($_POST['category_id']) ){$error.="Please Select Proudct Category <br/>";}
 		else {$category_id=$_POST['category_id']; }
 		
 	$accepted_image_types = array("image/gif", "image/jpg", "image/jpeg", "image/pjpeg", "image/png", "image/x-png");
@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
 			    }
 		elseif (!in_array($_FILES['proudct_image']['type'], $accepted_image_types ))
 		{
-			$error.= 'Problem: file is not type';
+			$error.= 'Problem: file is not image';
 			#exit;
 		}
           }
@@ -69,22 +69,18 @@ if(isset($_POST['submit'])){
             exit;
             }
           }
-           $data =array("product_name"=>"{$product_name}","product_price"=>"{$product_price}","category_id"=>"{$category_id}","status"=>"{$status}","display"=>"{$display}","image"=>"{$image}");
+           $data =array("product_name"=>"{$product_name}","product_price"=>"{$product_price}","category_id"=>"{$category_id}","status"=>"{$status}","display"=>"{$display}","image"=>"{$Filename}");
          var_dump($data);
           $result=$admin->insert_product($data);  
           if ($result != false) {    
             echo "<p class='alert-danger result' style='display:block'>user added thanks</p>";
          }else{
           echo"<p class='alert-danger result' style='display:block'> cant add this user</p>";
+          array_map('unlink', glob($Filename)); 
          }
    }
-   echo"<p class='clearfix'>mkmkm</p>";
- }
- 
- else{ 
-//return to re-enter again 
- echo"<p class='alert-danger result' style='display:block'> i didn't enter</p>";
- }
+
+
 
 
 
