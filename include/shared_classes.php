@@ -24,6 +24,12 @@ class sharedmethods{
 		//var_dump($res);
 		return $res;
 	 }
+	 function selectUsers(){
+	    $data=[];
+		$res=$GLOBALS['db']->select("users",$data,"user_type!='admin'");
+		//var_dump($res);
+		return $res;
+	 }
 }
 
 ?>
