@@ -69,6 +69,8 @@ error: function(){}
     <div class="container">
 <div id="result"></div>
         <form class="form-horizontal" role="form" method ="post" id="DoAddUser" action="add-user.php" enctype="multipart/form-data">
+        
+<?php echo '<input  type="hidden" class="form-control col-lg-9" id="user_id" name="user_id" value="'.$user_id.'" required placeholder="user_id">'; ?>
       <!--      <div class="result"></div> -->
             <!-- Name -->   
             <div class="result alert-danger col-sm-10 col-sm-offset-2 pull-right"></div>

@@ -84,11 +84,11 @@ $error='';
 		echo $error;
 		echo '</div>';
         }else{
-          echo "<div class='alert-danger result'  style='display:block'> ";
+
           if (is_uploaded_file($_FILES['imageuser']['tmp_name']))
           {
             $nameimg = time().$_FILES['imageuser']['name'];
-            $Filename = __DIR__."/../uploads/'.$nameimg;
+            $Filename = __DIR__.'/../uploads/'.$nameimg;
             if (!move_uploaded_file($_FILES['imageuser']['tmp_name'], $Filename))
             {
             echo '<div class="alert alert-danger"><strong>Error!</strong>';
@@ -100,9 +100,16 @@ $error='';
           $password = md5($password);
           //adding user data
            $data =array("name"=>"{$name}","email"=>"{$email}","password"=>"{$password}","image"=>"{$nameimg}","room_no"=>"{$roomNo}","ext"=>"{$ext}","user_type"=>'user');
-          $result=$admin->insert_user($data);  
-          if ($result != false) {    
-            echo '<div class="alert alert-success"><strong>Success!</strong> User added thanks</div>';
+          
+          $result=false;
+         if(isset($_POST['user_id']) && !empty($_POST['user_id'])){$result=$admin->user_update($data,$_POST['user_id']); } 
+         else{$result=$admin->insert_user($data);  } 
+         
+          if ($result != false) {   
+           if(isset($_POST['user_id']) && !empty($_POST['user_id'])){ 
+            echo '<div class="alert alert-success"><strong>Success!</strong> User Edited thanks</div>';}
+            else { 
+            echo '<div class="alert alert-success"><strong>Success!</strong> User added thanks</div>';}
          }else{
           echo '<div class="alert alert-danger"><strong>Error!</strong>';
 		 echo"Can't add this user...";

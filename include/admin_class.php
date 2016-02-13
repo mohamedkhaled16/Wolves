@@ -32,6 +32,11 @@ class admin extends ProudctDB {
       return $query;
 	}
 	
+	function user_update($array,$id){
+      $query=$GLOBALS['db']->edit("users",$array,"user_id=".$id);
+      return $query;
+	}
+	
 	
 }
 ?>
