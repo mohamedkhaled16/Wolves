@@ -10,6 +10,7 @@ $cpassword="";
 $roomNo="";
 $ext=""; 
 $Filename="";
+$nameimg="";
 $name="";
 $error='';
         
@@ -87,7 +88,7 @@ $error='';
           if (is_uploaded_file($_FILES['imageuser']['tmp_name']))
           {
             $nameimg = time().$_FILES['imageuser']['name'];
-            $Filename = __DIR__.'/../uploads/'.$nameimg;
+            $Filename = __DIR__."/../uploads/'.$nameimg;
             if (!move_uploaded_file($_FILES['imageuser']['tmp_name'], $Filename))
             {
             echo '<div class="alert alert-danger"><strong>Error!</strong>';

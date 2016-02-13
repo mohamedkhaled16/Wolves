@@ -1,6 +1,41 @@
 <?php 
     include "include/header.php";
- ?>
+    
+    
+$user_id="";
+$name="";
+$email="";
+$password="";
+$image="";
+$room_no="";
+$user_type="";
+$ext="";
+$status="";
+    
+if(isset($_GET['UID']) || !empty($_GET['UID']) )
+		{
+			$result=$admin->select_users_id($_GET['UID']);
+			if($result){
+				foreach($result as $row) {
+						$user_id=$row['user_id'];
+						$name=$row['name'];
+						$email=$row['email'];
+						$password=$row['password'];
+						$image=$row['image'];
+						$room_no=$row['room_no'];
+						$user_type=$row['user_type'];
+						$ext=$row['ext'];
+						$status=$row['status'];
+						}
+		
+		
+		
+		}
+		}
+          
+          
+?>
+ 
 <script type="text/javascript">
 $(document).ready(function (e){
 $("#DoAddUser").on('submit',(function(e){
@@ -41,21 +76,21 @@ error: function(){}
             <div class="form-group">
                 <label class="control-label col-sm-2" for="email">Name:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" required value="<?php echo $name; ?>">
                 </div>
             </div>
             <!-- Email -->
             <div class="form-group">
                 <label class="control-label col-sm-2" for="email">Email:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" name="email"  placeholder="Enter email">
+                    <input type="text" class="form-control" id="email" name="email"  placeholder="Enter email" required value="<?php echo $email; ?>">
                 </div>
            </div>
             <!-- Password -->
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">Password:</label>
                 <div class="col-sm-10"> 
-                    <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password">
+                    <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" >
                 </div>
             </div>
             <!-- Confirm Password -->
@@ -69,21 +104,24 @@ error: function(){}
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">Room no:</label>
                 <div class="col-sm-10"> 
-                    <input type="text" class="form-control" id="roomNo" name="roomNo" placeholder="Enter room no." maxlength="4">
+                    <input type="text" class="form-control" id="roomNo" name="roomNo" placeholder="Enter room no." maxlength="4" required value="<?php echo $room_no; ?>">
                 </div>
             </div>
             <!-- Ext -->
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">Ext:</label>
                 <div class="col-sm-10"> 
-                    <input type="text" class="form-control" id="ext" name="ext" placeholder="Enter Ext no." maxlength="4">
+                    <input type="text" class="form-control" id="ext" name="ext" placeholder="Enter Ext no." maxlength="4" required value="<?php echo $ext; ?>">
                 </div>
            </div>
             <!-- Img -->
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pwd">Profile picture:</label>
-                <div class="col-sm-10"> 
+                <div class="col-sm-5"> 
                     <input type="file" class="form-control" name="imageuser" id="pic">
+                </div>
+                <div class="col-sm-5"> 
+			<img style="width:100px;" class="img-rounded img-responsive"  src="<?php echo "uploads/".$image; ?>"/>
                 </div>
             </div>
             <!-- Submit ** Reset -->              
