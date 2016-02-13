@@ -100,7 +100,7 @@ alert(PID);
 				echo "<tr id='row$product_id'>";
 				echo "<td>$product_name</td>";
 				echo "<td>$product_price</td>";
-				echo "<td><img style='width:200px' class='img-rounded img-responsive'  src='$image'></td>";
+				echo "<td><img class='img-rounded img-responsive thumb'  src='uploads/$image' ></td>";
 				echo '<td>';
 				if($status == "unavailable"){
 				echo '<span id="statusspan'.$product_id.'" >UnAvailable</span><a href="javascript:void(0);" class="text-danger" onclick="changeProudctStatusAvail('.$product_id.')" id="status'.$product_id.'"><i class="fa fa-toggle-off fa-3x"></i></a>';}

@@ -8,6 +8,11 @@ class orders extends ProudctDB{
  
       return $query;
   	}
-  
+  function getLastOrder(){
+   //  $q="order,orders_details"
+
+     //$query=$GLOBALS['db']->addId("orders",$data);
+
+  }
 }
 ?>

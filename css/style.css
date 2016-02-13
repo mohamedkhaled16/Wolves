@@ -99,5 +99,9 @@ body .btn-group-justified>.btn-group .dropdown-menu{
 }#orders li .col-md-3,#orders li .col-md-4,#orders li .col-md-2,#orders li .col-md-1{
 	padding-right: 0px;
 	padding-left: 0px; 
+}#total{
+	margin-top: 10px;
+}body .thumb{
+	width:100px;height:100px;border-radius:5px;
 }
 

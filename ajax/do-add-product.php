@@ -64,7 +64,7 @@ ini_set('display_errors', 1);
           if (is_uploaded_file($_FILES['proudct_image']['tmp_name']))
           {
             $nameimg = time().$_FILES['proudct_image']['name'];
-            $Filename = __DIR__.'/../uploads/'.$nameimg;
+            $Filename = '../uploads/'.$nameimg;
             if (!move_uploaded_file($_FILES['proudct_image']['tmp_name'], $Filename))
             {
            // echo "$Filename";
@@ -74,7 +74,7 @@ ini_set('display_errors', 1);
             exit;
             }
           }
-           $data =array("product_name"=>"{$product_name}","product_price"=>"{$product_price}","category_id"=>"{$category_id}","status"=>"{$status}","display"=>"{$display}","image"=>"{$Filename}");
+           $data =array("product_name"=>"{$product_name}","product_price"=>"{$product_price}","category_id"=>"{$category_id}","status"=>"{$status}","display"=>"{$display}","image"=>"{$nameimg}");
 
          $result=false;
          if(isset($_POST['product_id']) && !empty($_POST['product_id'])){$result=$admin->product_update($data,$_POST['product_id']); } 

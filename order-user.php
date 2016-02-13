@@ -114,6 +114,9 @@
           data:  $('#send_user_order').serialize()+"&orders="+JSON.stringify(data),
           success: function(e){
           $(".result").html(e);
+          $("#total").html("");
+          $("#orders").html("");
+          $(".nodes").text("");
           },
           error: function(e){          }           
           });
