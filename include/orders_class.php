@@ -5,14 +5,19 @@ class orders extends ProudctDB{
   	function inserOrder($data){
     // var_dump( $data);
      $query=$GLOBALS['db']->addId("orders",$data);
- 
       return $query;
   	}
   function getLastOrder(){
-   //  $q="order,orders_details"
-
-     //$query=$GLOBALS['db']->addId("orders",$data);
-
+     $tables="orders,orders_details,products";
+     $data=[];
+     $condition="orders_details.order_id=orders.order_id 
+                 and orders_details.user_id='{$_SESSION['user_id']}'
+                 and products.product_id= orders_details.product_id
+                 order by orders_details.order_id desc
+                 limit 1";
+     $query=$GLOBALS['db']->select($tables,$data,$condition);
+     return $query;
+    // var_dump($query);
   }
 }
 ?>
