@@ -19,5 +19,6 @@ class orders extends ProudctDB{
     
     // var_dump($query);
   }
+  
 }
 ?>

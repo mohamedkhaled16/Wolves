@@ -30,6 +30,24 @@ class sharedmethods{
 		//var_dump($res);
 		return $res;
 	 }
+	 function getCurrentOrders(){
+        $tables="users,orders";
+	     $data=[];
+	     $condition="orders.user_id=users.user_id
+	                 and status='processing'
+	                 order by orders.order_id desc";
+	     $query=$GLOBALS['db']->select($tables,$data,$condition);
+	     return $query;
+	 }
+	 function getOrdersDetails($id){
+	 	 $tables="products,orders_details";
+	     $data=[];
+	     $condition="orders_details.product_id=products.product_id
+	                 and orders_details.order_id='{$id}'
+	                 order by orders_details.order_id desc";
+	     $query=$GLOBALS['db']->select($tables,$data,$condition);
+	     return $query;   
+     }
 }
 
 ?>
