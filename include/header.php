@@ -45,15 +45,15 @@
 		  <?php if($_SESSION['usertype']=='admin'){ ?>
 			<ul class="nav navbar-nav">
 				<li><a href="index.php">Home</a></li>          
-				<li><a href="products.php">Products</a></li>
+				<li><a href="all-products.php">Products</a></li>
 				<li><a href="all-user.php">Users</a></li>
-				<li><a href="add-order.php">Manual Order</a></li>
+				<li><a href="order-admin.php">Manual Order</a></li>
 				<li><a href="checks.php">checks</a></li>
     		</ul>
     	  <?php }elseif($_SESSION['usertype']=='user'){ ?>
             <ul class="nav navbar-nav">
 				<li><a href="index.php">Home</a></li>          
-				<li><a href="">myOrders</a></li>
+				<li><a href="my-order.php">myOrders</a></li>
     		</ul>
     	  <?php } ?>	
 		</div>

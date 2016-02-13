@@ -48,6 +48,14 @@ class sharedmethods{
 	     $query=$GLOBALS['db']->select($tables,$data,$condition);
 	     return $query;   
      }
+     function getCurrentOrders_user(){
+     	$tables="orders";
+	     $data=[];
+	     $condition="orders.user_id='{$_SESSION['user_id']}'
+	                 order by orders.order_id desc";
+	     $query=$GLOBALS['db']->select($tables,$data,$condition);
+	     return $query;
+     }
 }
 
 ?>
