@@ -29,7 +29,7 @@ $.post("ajax/do-crud-user.php",
 }
 
 function editUser(UID){
-alert(UID);
+window.location.href = "add-user.php?UID="+UID;
 }
 
 </script>

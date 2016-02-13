@@ -66,7 +66,8 @@ $.post("ajax/do-product.php",
 }
 
 function editProudct(PID){
-alert(PID);
+window.location.href = "add-product.php?PID="+PID;
+
 }
 
 </script>
