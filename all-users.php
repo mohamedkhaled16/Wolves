@@ -35,13 +35,22 @@ window.location.href = "add-user.php?UID="+UID;
 </script>
 
 <!-- ---------------------------------------------------------------------------- -->
-<div>
-	<h1> All Users</h1>
-	<a href="add-products.html" align="left">Add User</a> 
 
+
+
+
+<div class="container">
+<div class="row">
+
+	<div class="col-sm-3">
+		<h1>All users</h1> 
+	</div>
+	<div class="col-sm-2">
+   <h4><a href="add-user.php">add user</a></h4> 
+  </div>
 </div>
 <div class="table-responsive">
-			<table class="table table-hover table-bordered table-condensed table-hover">
+			<table class="table table-striped table-hover table-bordered table-condensed table-hover">
 			<tr>
                 <th>Name</th>
 				<th>Room</th>
@@ -78,6 +87,7 @@ window.location.href = "add-user.php?UID="+UID;
 			}
 			?>
 		</table>
+		</div>
 		</div>
 
 <!----------------------------------------------------------------------------------------- -->

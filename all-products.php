@@ -73,13 +73,20 @@ window.location.href = "add-product.php?PID="+PID;
 </script>
 
 <!-- ---------------------------------------------------------------------------- -->
-<div>
-	<h1> All Products</h1>
-	<a href="add-products.html" align="left">Add product</a> 
 
+<div class="container">
+<div class="row">
+
+	<div class="col-sm-3">
+		<h1>All Products</h1> 
+	</div>
+	
+	<div class="col-sm-3">
+   <h4><a href="add-product.php">Add Proudct</a></h4> 
+  </div>
 </div>
 <div class="table-responsive">
-			<table class="table table-hover table-bordered table-condensed table-hover">
+			<table class="table table-striped table-hover table-bordered table-condensed table-hover">
 			<tr>
                 <th>Product</th>
 				<th>Price</th>
@@ -135,7 +142,7 @@ window.location.href = "add-product.php?PID="+PID;
 			*/
 			?>
 		</table>
-		</div>
+		</div></div>
 
 <!----------------------------------------------------------------------------------------- -->
 			<ul class="pagination  pagination-lg col-sm-offset-6">
