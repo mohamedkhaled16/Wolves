@@ -26,7 +26,7 @@ class sharedmethods{
 	 }
 	 function selectUsers(){
 	    $data=[];
-		$res=$GLOBALS['db']->select("users",$data,"user_type!='admin'");
+		$res=$GLOBALS['db']->select("users",$data,"user_type!='admin' And status='active'");
 		//var_dump($res);
 		return $res;
 	 }

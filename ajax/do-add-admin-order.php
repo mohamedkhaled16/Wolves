@@ -8,7 +8,7 @@ require_once __DIR__."/../include/classes_header.php" ;
 $date=date('Y-m-d h:i:s');
 $_POST['nodes']=strip_tags($_POST['nodes']);
 $room_number=strip_tags($_POST['room_number']);
-echo $_POST['user_id'];
+//echo $_POST['user_id'];
 
 $data =array("user_id"=>"{$_POST['user_id']}","date"=>"{$date}","room_number"=>"{$room_number}","status"=>"processing","nodes"=>"{$_POST['nodes']}");
 $result=$order->inserOrder($data);
