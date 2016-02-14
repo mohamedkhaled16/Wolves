@@ -1,17 +1,18 @@
 <?php 
    include "include/classes_header.php";
-  ?>
-  <!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <script src="js/jquery-1.11.2.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/bootstrap.js"></script>
-    <script src="js/validate.js"></script>
+    <link rel="stylesheet" href="Assets/css/bootstrap.css">
+    <script src="Assets/js/jquery-1.11.2.js"></script>
+    <link rel="stylesheet" href="Assets/css/style.css">
+    <script src="Assets/js/bootstrap.js"></script>
+    <script src="Assets/js/validate.js"></script>
+    <link rel="stylesheet" href="Assets/font-awesome-4.5.0/css/font-awesome.css">
 </head>
 <body>
 <!-- ---------------------------------------------------------------------------- -->
