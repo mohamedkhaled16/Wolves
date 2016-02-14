@@ -43,7 +43,7 @@ class dbmethods {
 
         if ($condition == "")
             $condition = "'1' = '1'";
-        $sql = "SELECT " . $outFieldsSql . " FROM " . $table . " WHERE " . $condition;
+        echo $sql = "SELECT " . $outFieldsSql . " FROM " . $table . " WHERE " . $condition;
         $result = mysqli_query($this->link, $sql);
         if ($result) {
             while ($row = mysqli_fetch_array($result)) {
