@@ -60,7 +60,7 @@ class sharedmethods{
 	  //SELECT orders.date, sum(orders_details.product_price * orders_details.product_count) AS TotalAmount FROM users,orders,orders_details WHERE orders.user_id=users.user_id and orders.status='done' AND orders.order_id = orders_details.order_id AND users.user_id=5 GROUP BY orders_details.order_id order by orders.order_id desc
 	  
         $tables="users,orders,orders_details";
-	     $data=['orders.date','sum(orders_details.product_price * orders_details.product_count) AS TotalAmount'];
+	     $data=['orders.date','orders.order_id','sum(orders_details.product_price * orders_details.product_count) AS TotalAmount'];
 	     $condition="orders.user_id=users.user_id
 	                 and orders.status='done'
 	                 AND orders.order_id = orders_details.order_id
