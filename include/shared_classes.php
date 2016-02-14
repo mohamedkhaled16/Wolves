@@ -26,7 +26,7 @@ class sharedmethods{
 	 }
 	 function selectUsers(){
 	    $data=[];
-		$res=$GLOBALS['db']->select("users",$data,"user_type!='admin'");
+		$res=$GLOBALS['db']->select("users",$data,"user_type!='admin' And status='active'");
 		//var_dump($res);
 		return $res;
 	 }
@@ -34,11 +34,43 @@ class sharedmethods{
         $tables="users,orders";
 	     $data=[];
 	     $condition="orders.user_id=users.user_id
-	                 and status='processing'
+	                 and orders.status='processing'
 	                 order by orders.order_id desc";
 	     $query=$GLOBALS['db']->select($tables,$data,$condition);
 	     return $query;
 	 }
+	 
+	 
+	  function getTotals(){
+
+        $tables="users,orders,orders_details";
+	     $data=['users.user_id','users.name','SUM(orders_details.product_price  * orders_details.product_count) AS TotalAmount'];
+	     $condition="orders.user_id=users.user_id
+	                 and orders.status='done'
+	                 AND orders.order_id = orders_details.order_id
+	                 order by orders.order_id desc";
+	     $query=$GLOBALS['db']->select($tables,$data,$condition);
+	     return $query;
+	 }
+	 
+	 
+	 
+	 function getTotalsDetailsByUID($UID){
+
+	  //SELECT orders.date, sum(orders_details.product_price * orders_details.product_count) AS TotalAmount FROM users,orders,orders_details WHERE orders.user_id=users.user_id and orders.status='done' AND orders.order_id = orders_details.order_id AND users.user_id=5 GROUP BY orders_details.order_id order by orders.order_id desc
+	  
+        $tables="users,orders,orders_details";
+	     $data=['orders.date','sum(orders_details.product_price * orders_details.product_count) AS TotalAmount'];
+	     $condition="orders.user_id=users.user_id
+	                 and orders.status='done'
+	                 AND orders.order_id = orders_details.order_id
+	                 AND users.user_id=".$UID."
+	                 GROUP BY orders_details.order_id
+	                 order by orders.order_id desc";
+	     $query=$GLOBALS['db']->select($tables,$data,$condition);
+	     return $query;
+	 }
+	 
 	 function getOrdersDetails($id){
 	 	 $tables="products,orders_details";
 	     $data=[];

@@ -8,27 +8,29 @@
    ?>
       <div class="result error"></div>
 
-  <div class="col-md-3 pull-left left_order">
+  <div class="col-md-3 col-sm-6 col-xs-12  pull-left left_order text-center">
      <h3>orders</h3>
      <hr/>
 
      <form id="send_user_order" method="post">
-       <ul id="orders" class="col-md-12"></ul> 
-       <div class="nodes">
+       <ul id="orders" class="col-md-12 col-sm-12 col-xs-12"></ul> 
+       <div class="row">
          <textarea class="nodes form-control" name="nodes"></textarea><br/>
        </div>
+       <div class="row">
        <select class="form-control" name="room_number" id="room_number">
          <option value="">room number</option>
          <?php foreach ($room as $no) { ?>
          <option value="<?php echo $no['room_no'] ?>"><?php echo $no['room_no'] ?></option>
         <?php  } ?>
        </select>
+       </div>
       <hr/>
       <div id="total"></div>
       <input type="button" class="btn btn-primary" name="confirm" value="Confirm" onclick="sendOrder()" id="button"/>
     </form>
   </div>
-  <div class="col-md-9 pull-right right_order">
+  <div class="col-md-9 col-xs-12 pull-right right_order">
     <h3 class="text-left">Last order</h3>
     <hr>
     <?php $result=$order->getLastOrder();  ?>

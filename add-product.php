@@ -181,7 +181,7 @@ $image="";-->
 			<input  type="file" class="form-control col-lg-9" id="proudct_image" name="proudct_image">
 			</div>
 			<div class="col-lg-5" >
-			<img style="width:100px;" class="img-rounded img-responsive" src="<?php echo $image; ?>" />
+			<img style="width:100px;" class="img-rounded img-responsive" src="uploads/<?php echo $image; ?>" />
 			</div>
 	</div>
 

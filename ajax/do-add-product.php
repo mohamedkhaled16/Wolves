@@ -79,8 +79,11 @@ ini_set('display_errors', 1);
          $result=false;
          if(isset($_POST['product_id']) && !empty($_POST['product_id'])){$result=$admin->product_update($data,$_POST['product_id']); } 
          else{$result=$admin->insert_product($data); } 
-          if ($result != false) {    
-            echo '<div class="alert alert-success"><strong>Success!</strong> User had benn added...</div>';
+          if ($result != false) {  
+          if(isset($_POST['product_id']) && !empty($_POST['product_id'])){  
+            echo '<div class="alert alert-success"><strong>Success!</strong> Product had been Edited...</div>';}
+            else {  
+            echo '<div class="alert alert-success"><strong>Success!</strong> Product had been added...</div>';}
          }else{
 		 echo '<div class="alert alert-danger"><strong>Error!</strong>';
 		 echo"Can't add this user...";

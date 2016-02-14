@@ -6,9 +6,7 @@
           $result=$admin->select_products();
           
 ?>
-<!--<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 <script>
 function changeProudctStatusUnAvail(PID){
 $.post("ajax/do-product.php",
@@ -66,19 +64,27 @@ $.post("ajax/do-product.php",
 }
 
 function editProudct(PID){
-alert(PID);
+window.location.href = "add-product.php?PID="+PID;
+
 }
 
 </script>
 
 <!-- ---------------------------------------------------------------------------- -->
-<div>
-	<h1> All Products</h1>
-	<a href="add-products.html" align="left">Add product</a> 
 
+<div class="container">
+<div class="row">
+
+	<div class="col-sm-3">
+		<h1>All Products</h1> 
+	</div>
+	
+	<div class="col-sm-3">
+   <h4><a href="add-product.php">Add Proudct</a></h4> 
+  </div>
 </div>
 <div class="table-responsive">
-			<table class="table table-hover table-bordered table-condensed table-hover">
+			<table class="table table-striped table-hover table-bordered table-condensed table-hover">
 			<tr>
                 <th>Product</th>
 				<th>Price</th>
@@ -134,7 +140,7 @@ alert(PID);
 			*/
 			?>
 		</table>
-		</div>
+		</div></div>
 
 <!----------------------------------------------------------------------------------------- -->
 			<ul class="pagination  pagination-lg col-sm-offset-6">
