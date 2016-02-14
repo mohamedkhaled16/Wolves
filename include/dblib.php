@@ -170,7 +170,7 @@ public function addId($table = "", $inFields = array()) {
     public function queryId($query) {
         $sql = $query;
         $result = mysqli_query($this->link, $sql);
-        echo mysqli_insert_id($this->link);
+        //echo mysqli_insert_id($this->link);
         return mysqli_insert_id($this->link);
     }
 }

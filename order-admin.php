@@ -66,7 +66,7 @@
     var priceall=0;
     $("#orders li").each(function(){
       var id=$(this).attr('data');
-      var p=$("#price_pro_"+id).attr('data');
+      var price=$("#price_"+id).attr("data");
       var c=$("#count_"+id).text();
       var to=parseInt(p)*parseInt(c);
       priceall +=to;
