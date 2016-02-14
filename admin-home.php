@@ -15,7 +15,6 @@
      </tr>
   <?php
     foreach ($order as $data) {
-    echo $data['order_id'];
     $order_details=$shared->getOrdersDetails($data['order_id']);
 
 ?>

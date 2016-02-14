@@ -34,7 +34,7 @@ class sharedmethods{
         $tables="users,orders";
 	     $data=[];
 	     $condition="orders.user_id=users.user_id
-	                 and status='processing'
+	                 and orders.status='processing'
 	                 order by orders.order_id desc";
 	     $query=$GLOBALS['db']->select($tables,$data,$condition);
 	     return $query;
