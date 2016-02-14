@@ -46,7 +46,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="index.php">Home</a></li>          
 				<li><a href="all-products.php">Products</a></li>
-				<li><a href="all-user.php">Users</a></li>
+				<li><a href="all-users.php">Users</a></li>
 				<li><a href="order-admin.php">Manual Order</a></li>
 				<li><a href="checks.php">checks</a></li>
     		</ul>
