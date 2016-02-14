@@ -14,7 +14,7 @@ class ProudctDB{
       return $query;
 	}
 	function selectProducts(){
-	  $query=$GLOBALS['db']->select("products");
+	  $query=$GLOBALS['db']->select("products","","display='yes' AND status= 'available'");
       return $query;
 	}
 	
