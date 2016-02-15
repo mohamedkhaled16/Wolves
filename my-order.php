@@ -24,9 +24,23 @@
 ?>
      <tr onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();" class='tr'>
        <td><?php echo $data['date']?></td>
-       <td><?php echo $data['status']?></td>
+       <td><?php 
+              if($data['status']=='delivered'){
+                echo "Out for delivery" ;
+              }else{
+                echo $data['status'];
+              }
+                ?>           
+              
+              
+            </td>
        <td><?php echo $total .' EGP '; ?></td>
-       <td></td>
+       <td>
+           <?php if($data['status']=="processing"){
+              echo "<a href='javascript:void(0)'>Cancle</a>";
+             }
+            ?>
+       </td>
      </tr>
      <tr style="display:none" id="tr_<?php echo $data['order_id']?>">
        <td colspan="5">
