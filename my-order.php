@@ -22,22 +22,20 @@
     }
     $all+=$total;
 ?>
-     <tr onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();" class='tr'>
-       <td><?php echo $data['date']?></td>
-       <td><?php 
+     <tr  id="par_<?php echo $data['order_id']?>" class='tr'>
+       <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['date']?></td>
+       <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php 
               if($data['status']=='delivered'){
                 echo "Out for delivery" ;
               }else{
                 echo $data['status'];
               }
-                ?>           
-              
-              
+             ?>   
             </td>
        <td><?php echo $total .' EGP '; ?></td>
-       <td>
+       <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();">
            <?php if($data['status']=="processing"){
-              echo "<a href='javascript:void(0)'>Cancle</a>";
+              echo "<a href='javascript:void(0)' onclick='cancleOrder(".$data['order_id'].")' >Cancle</a>";
              }
             ?>
        </td>
@@ -71,4 +69,51 @@
   echo "you dont have permission to this page";
   } ?>
 </div>
+<script type="text/javascript">
+  function cancleOrder(id){
+      $.ajax({
+           url:"ajax/do-cancel-order.php",
+           method:'get',
+          data:{
+            "id":id
+           },
+          success:function(response){
+           if(response==1){
+            $("#par_"+id+" td:nth-child(2)").html("cancled");
+            $("#par_"+id+" td:last").html("");
+           }         
+
+          },
+          complete:function(){
+          }, cache: false,
+          async:true
+      });
+  }
+  $(function(){
+     updateDate();
+  });
+  function updateDate(){
+      $.ajax({
+           url:"ajax/do-update-order.php",
+           method:'get',
+          data:{},
+          success:function(response){
+             console.log(response.length);
+             for(var i=0;i<response.length;i++){
+              $("#par_"+response[i].order_id+" td:last").html("");
+               if(response[i].status=='delivered'){
+                $("#par_"+response[i].order_id+" td:nth-child(2)").html("Out for delivery");
+               }else{
+                 $("#par_"+response[i].order_id+" td:nth-child(2)").html("Done");
+                }
+             }
+             updateDate();   
+          },
+          complete:function(){
+          }, cache: false,
+          async:true,
+          dataType:'json'
+      });
+  }
+</script>
 <?php include("include/footer.php"); ?>
