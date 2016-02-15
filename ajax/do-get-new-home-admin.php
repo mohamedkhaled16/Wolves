@@ -20,7 +20,14 @@ $condition="orders.user_id=users.user_id
    if(count($orders_data)==0){
    	echo "0";
    }else{
+   	sleep(1);
 foreach ($orders_data as $data_a) {
+	/*$tables2="products,orders_details";
+	$data2=[];
+	 $condition2="orders_details.product_id=products.product_id
+	                 and orders_details.order_id='{$data_a['order_id']}'
+	                 order by orders_details.order_id desc";
+	  $order_details=$GLOBALS['db']->select($tables2,$data2,$condition2);*/
     $order_details=$shared->getOrdersDetails($data_a['order_id']);
 
 
@@ -35,14 +42,14 @@ foreach ($orders_data as $data_a) {
      <tr id="tr_<?php echo $data_a['order_id']?>" data="<?php echo $data_a['order_id']?>">
        <td colspan="5">
          <?php
-           var_dump($order_details);
+           //var_dump($order_details);
              $total=0;
             foreach ($order_details as $prod) { 
               $total +=$prod['product_price'] *$prod['product_count'] ;
               ?>
              <div class="col-md-2 col-xs-6 prod"> 
                <span class="badge" ><?php echo $prod['product_price'] ;?> L.E </span>
-               <img src="../uploads/<?php echo $prod['image'] ;?>" />
+               <img src="uploads/<?php echo $prod['image'] ;?>" />
                <h3><?php echo $prod['product_name'] ;?></h3>
                 <h3><?php echo $prod['product_count'] ;?></h3>
              </div>
