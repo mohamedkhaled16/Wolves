@@ -51,7 +51,8 @@ class dbmethods {
             }
             mysqli_free_result($result);
         }
-        //print_r($data);
+        //echo $sql;
+       // print_r($data);
         return $data;
     }
     /* ================================================================================================= */

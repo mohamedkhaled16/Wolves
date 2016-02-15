@@ -18,14 +18,15 @@
     $order_details=$shared->getOrdersDetails($data['order_id']);
 
 ?>
-     <tr onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();" class='tr'>
+     <!--<tr onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();" class='tr' id="par_<?php echo $data['order_id']?>">-->
+    <tr class='tr' id="par_<?php echo $data['order_id']?>">
        <td><?php echo $data['date']?></td>
        <td><?php echo $data['name']?></td>
        <td><?php echo $data['room_number']?></td>
        <td><?php echo $data['ext']?></td>
-       <td><?php echo $data['status']?></td>
+       <td><a href="javascript:void(0)" onclick="changeStatus(<?php echo $data['order_id']?>)">Deliver</a></td>
      </tr>
-     <tr style="display:none" id="tr_<?php echo $data['order_id']?>">
+     <tr id="tr_<?php echo $data['order_id']?>" data="<?php echo $data['order_id']?>">
        <td colspan="5">
          <?php
              $total=0;
@@ -49,7 +50,55 @@
 <?php    }
   ?>
      </table>
+<script type="text/javascript">
+ 
 
+$(function(){
+ 
+   updatedata();
+   
+});
+ function updatedata(){
+    var id= $('.table tr:nth-child(3)').attr('data');
+    $.ajax({
+           url:"ajax/do-get-new-home-admin.php",
+           method:'get',
+          data:{
+            "id":id
+           },
+          success:function(response){
+            console.log(response);
+           if(response!=0){
+            $(".table tr:nth-child(1)").after(response);
+           } 
+             updatedata();
+
+          },
+          complete:function(){
+          }, cache: false,
+          async:true
+      });
+  }
+  function changeStatus (id) {
+             $.ajax({
+                       url:"ajax/do-update-home-admin.php",
+                       method:'get',
+                        data:{
+                            "id":id
+                        },
+                        success:function(response){
+                          console.log(response);
+                           if(response==1){
+                             $("#tr_"+id).remove();
+                             $("#par_"+id).remove();
+                           }                           
+                        },
+                        complete:function(ayaad){
+                        },
+                        async:true
+                      });
+      }
+</script>
    
   <p class="clearfix"></p>
  <?php }else{
