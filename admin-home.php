@@ -56,6 +56,7 @@
 $(function(){
  
    updatedata();
+   removeCanceledorder();
    
 });
  function updatedata(){
@@ -67,7 +68,6 @@ $(function(){
             "id":id
            },
           success:function(response){
-            console.log(response);
            if(response!=0){
             $(".table tr:nth-child(1)").after(response);
            } 
@@ -79,6 +79,25 @@ $(function(){
           async:true
       });
   }
+  function removeCanceledorder(){
+          $.ajax({
+           url:"ajax/do-remove-canceled-order.php",
+           method:'get',
+          data:{},
+          success:function(response){
+             for(var i=0;i<response.length;i++){
+              console.log(response[i].order_id);
+               $('#par_'+response[i].order_id).remove();
+               $('#tr_'+response[i].order_id).remove();
+             }
+             removeCanceledorder();   
+          },
+          complete:function(){
+          }, cache: false,
+          async:true,
+          dataType:'json'
+      });
+   }
   function changeStatus (id) {
              $.ajax({
                        url:"ajax/do-update-home-admin.php",
@@ -93,7 +112,7 @@ $(function(){
                              $("#par_"+id).remove();
                            }                           
                         },
-                        complete:function(ayaad){
+                        complete:function(){
                         },
                         async:true
                       });
