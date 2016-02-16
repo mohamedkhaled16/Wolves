@@ -6,8 +6,8 @@ class Database {
 	private $_connection;
 	private static $_instance; //The single instance
 	private $_host = "localhost";
-	private $_username = "adminb745Saf";
-	private $_password = "WCRaGCet71TQ";
+	private $_username = "root";
+	private $_password = "";
 	private $_database = "cafeteria";
 	/*
 	Get an instance of the Database
