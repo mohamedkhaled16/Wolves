@@ -3,7 +3,11 @@
   <h1 class="text-left">order </h1>
   <hr/>
   <?php if($_SESSION['usertype']=='user'){ 
-    $order=$shared->getCurrentOrders_user();
+      $order=$shared->getCurrentOrders_user_pagination();
+      $res_all=$shared->getCurrentOrders_user();
+      $total_records = count($res_all);  //count number of records
+      $total_pages = ceil($total_records / $GLOBALS['num_rec_per_page']); 
+
     ?>
         <table class="table table-striped text-left">
      <tr>
@@ -65,6 +69,23 @@
 
    
   <p class="clearfix"></p>
+  <ul class="pagination  pagination-lg col-sm-offset-6">
+      <?php
+           /* echo " <li ";
+            if($GLOBALS['page']==1){echo " class='active'" ; }
+            echo "><a href='my-order.php?page=1'>first page</a></li>";  */
+      for ($i=1; $i<=$total_pages; $i++) { 
+            echo "<li ";
+            if($i==$GLOBALS['page']){echo " class='active'" ; }
+            echo "><a href='my-order.php?page=$i' >$i</a></li>";  
+      }
+/*          echo " <li ";
+          if($total_pages==$GLOBALS['page']){echo " class='active'" ; }
+          echo"><a href='my-order.php?page=$total_pages'>last page</a></li>";  
+*/
+?>
+      </ul>
+      <p class="clearfix"></p>
  <?php }else{
   echo "you dont have permission to this page";
   } ?>

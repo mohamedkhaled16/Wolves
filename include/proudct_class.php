@@ -6,9 +6,14 @@ class ProudctDB{
 	}
 	
 	function select_products(){
+      $query=$GLOBALS['db']->select("products","","display='yes' LIMIT  {$GLOBALS['start_from']}, {$GLOBALS['num_rec_per_page']} ");
+      return $query;
+	}
+	function select_products_All(){
       $query=$GLOBALS['db']->select("products","","display='yes'");
       return $query;
 	}	
+
 	function select_categories(){
       $query=$GLOBALS['db']->select("categories");
       return $query;

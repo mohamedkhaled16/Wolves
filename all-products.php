@@ -3,8 +3,10 @@
    ini_set('display_errors', 1);
  require_once __DIR__."/include/header.php" ;
 
-          $result=$admin->select_products();
-          
+  $result=$admin->select_products();
+  $res_all=$admin->select_products_All();
+  $total_records = count($res_all);  //count number of records
+  $total_pages = ceil($total_records / $GLOBALS['num_rec_per_page']); 
 ?>
 
 <script>
@@ -143,11 +145,21 @@ window.location.href = "add-product.php?PID="+PID;
 		</div></div>
 
 <!----------------------------------------------------------------------------------------- -->
+
 			<ul class="pagination  pagination-lg col-sm-offset-6">
-			  <li><a href="#">1</a></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li><a href="#">4</a></li>
-			  <li><a href="#">5</a></li>
+			<?php
+           /// echo " <li ";
+           // if($GLOBALS['page']==1){echo " class='active'" ; }
+            //echo "><a href='all-products.php?page=1'>first page</a></li>";  
+      for ($i=1; $i<=$total_pages; $i++) { 
+            echo " <li ";
+            if($i==$GLOBALS['page']){echo " class='active'" ; }
+            echo "><a href='all-products.php?page=$i' >$i</a></li>";  
+      }
+      //    echo " <li ";
+       //   if($total_pages==$GLOBALS['page']){echo " class='active'" ; }
+         // echo"><a href='all-products.php?page=$total_pages'>last page</a></li>";  
+
+?>
 			</ul>
 <?php include "include/footer.php" ;?>

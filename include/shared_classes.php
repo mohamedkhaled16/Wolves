@@ -88,6 +88,16 @@ class sharedmethods{
 	     $query=$GLOBALS['db']->select($tables,$data,$condition);
 	     return $query;
      }
+     function getCurrentOrders_user_pagination(){
+     	$tables="orders";
+	     $data=[];
+	     $condition="orders.user_id='{$_SESSION['user_id']}'
+	                  order by orders.order_id desc LIMIT  {$GLOBALS['start_from']}, {$GLOBALS['num_rec_per_page']} ";
+	     $query=$GLOBALS['db']->select($tables,$data,$condition);
+	     return $query;
+     }
+     
+
 }
 
 ?>
