@@ -43,7 +43,11 @@ $.post("ajax/get-checks-products.php",
   <h1 class="text-left">Checks </h1>
   <hr/>
   <?php if($_SESSION['usertype']=='admin'){ 
-    $order=$shared->getTotals();
+    $order=$shared->getTotals_pagination();
+    $res_all=$shared->getTotals();
+    $total_records = count($res_all);  //count number of records
+     $total_pages = ceil($total_records / $GLOBALS['num_rec_per_page']); 
+
     ?>
         <table class="table table-striped text-left">
      <tr>
@@ -72,7 +76,18 @@ $.post("ajax/get-checks-products.php",
 <div style="display:none;" id="checksproducts">
 
 </div>   
+  <ul class="pagination  pagination-lg col-sm-offset-6">
+               <?php
+                   for ($i=1; $i<=$total_pages; $i++) { 
+                   echo " <li ";
+                     if($i==$GLOBALS['page']){echo " class='active'" ; }
+                    echo "><a href='checks.php?page=$i' >$i</a></li>";  
+                    }
+
+               ?>
+      </ul>
   <p class="clearfix"></p>
+
  <?php }else{
   echo "you dont have permission to this page";
   } ?>

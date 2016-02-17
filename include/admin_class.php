@@ -20,7 +20,10 @@ class admin extends ProudctDB {
       $query=$GLOBALS['db']->select("users","","status='active'");
       return $query;
 	}
-	
+	function select_users_pagination(){
+      $query=$GLOBALS['db']->select("users","","status='active' LIMIT  {$GLOBALS['start_from']}, {$GLOBALS['num_rec_per_page']} ");
+      return $query;
+	}
 	
 	function select_users_id($id){
       $query=$GLOBALS['db']->select("users","","user_id=".$id);

@@ -3,8 +3,11 @@
    ini_set('display_errors', 1);
  require_once __DIR__."/include/header.php" ;
 
-          $result=$admin->select_users();
-          
+  $result=$admin->select_users_pagination();
+  $res_all=$admin->select_users();
+  $total_records = count($res_all);  //count number of records
+  $total_pages = ceil($total_records / $GLOBALS['num_rec_per_page']); 
+
 ?>
 
 <script>
@@ -90,10 +93,13 @@ window.location.href = "add-user.php?UID="+UID;
 
 <!----------------------------------------------------------------------------------------- -->
 			<ul class="pagination  pagination-lg col-sm-offset-6">
-			  <li><a href="#">1</a></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li><a href="#">4</a></li>
-			  <li><a href="#">5</a></li>
+               <?php
+                   for ($i=1; $i<=$total_pages; $i++) { 
+                   echo " <li ";
+                     if($i==$GLOBALS['page']){echo " class='active'" ; }
+                    echo "><a href='all-users.php?page=$i' >$i</a></li>";  
+                    }
+
+               ?>
 			</ul>
 <?php include "include/footer.php" ;?>
