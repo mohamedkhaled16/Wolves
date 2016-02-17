@@ -13,6 +13,7 @@ class orders extends ProudctDB{
      $condition="orders_details.order_id=(select order_id  from orders order by order_id  desc limit 1) 
                  and orders_details.user_id='{$_SESSION['user_id']}'
                  and products.product_id= orders_details.product_id
+                 AND status= 'available'
                  order by orders_details.order_id desc";
      $query=$GLOBALS['db']->select($tables,$data,$condition);
      return $query;

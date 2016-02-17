@@ -37,7 +37,7 @@
    <?php 
       foreach ($result as $prod) {
      ?>
-      <div class="col-md-3 col-xs-6 prod" data="<?php echo $prod['product_name'] ;?>" id="prod_<?php echo $prod['product_id'] ;?>" onclick="addproduct(<?php echo $prod['product_id'] ;?>)"> 
+      <div class="col-md-3 col-xs-6 prod" data="<?php echo $prod['product_name'] ;?>" id="prod_last_<?php echo $prod['product_id'] ;?>" onclick="addproduct(<?php echo $prod['product_id'] ;?>)"> 
            <span class="badge" id="price_<?php echo $prod['product_id'] ;?>" data="<?php echo $prod['product_price'] ;?>"><?php echo $prod['product_price'] ;?> L.E </span>
            <img src="uploads/<?php echo $prod['image'] ;?>" />
            <h3><?php echo $prod['product_name'] ;?></h3>
@@ -59,6 +59,31 @@
  <?php }else{echo "you dont have permission to this page";} ?>
 </div>
 <script type="text/javascript">
+  $(function(){
+     updateDate_removed();
+  });
+  function updateDate_removed(){
+      $.ajax({
+           url:"ajax/do-update-product.php",
+           method:'get',
+          data:{},
+          success:function(response){
+             for(var i=0;i<response.length;i++){
+                if($("#prod_"+response[i].product_id).length){
+                   $("#prod_"+response[i].product_id).remove();
+                }else if($("#prod_last_"+response[i].product_id).length){
+                   $("#prod_last_"+response[i].product_id).remove();
+                }
+             }
+             updateDate();   
+          },
+          complete:function(){
+          }, cache: false,
+          async:true,
+          dataType:'json'
+      });
+  }
+
   function calculateall(){
     var priceall=0;
     $("#orders li").each(function(){

@@ -9,10 +9,14 @@
     <title></title>
     <link rel="stylesheet" href="Assets/css/bootstrap.css">
     <script src="Assets/js/jquery-1.11.2.js"></script>
-    <link rel="stylesheet" href="Assets/css/style.css">
+    <link rel="stylesheet" href="Assets/css/style.css" />
     <script src="Assets/js/bootstrap.js"></script>
     <script src="Assets/js/validate.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     <link rel="stylesheet" href="Assets/font-awesome-4.5.0/css/font-awesome.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
 </head>
 <body>
 <div class="container-fluid text-center">

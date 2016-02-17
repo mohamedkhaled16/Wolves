@@ -9,6 +9,9 @@
       $total_pages = ceil($total_records / $GLOBALS['num_rec_per_page']); 
 
     ?>
+    <div class="search">
+      <input type="date" value="">
+    </div>
         <table class="table table-striped text-left">
      <tr>
        <th>Order Date</th>

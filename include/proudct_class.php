@@ -10,7 +10,7 @@ class ProudctDB{
       return $query;
 	}
 	function select_products_All(){
-      $query=$GLOBALS['db']->select("products","","display='yes'");
+      $query=$GLOBALS['db']->select("products","","display='yes' ");
       return $query;
 	}	
 
