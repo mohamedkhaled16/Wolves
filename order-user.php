@@ -72,7 +72,7 @@
              for(var i=0;i<response.length;i++){
                 if($("#prod_"+response[i].product_id).length){
                    $("#prod_"+response[i].product_id).remove();
-                }else if($("#prod_last_"+response[i].product_id).length){
+                } if($("#prod_last_"+response[i].product_id).length){
                    $("#prod_last_"+response[i].product_id).remove();
                 }
              }

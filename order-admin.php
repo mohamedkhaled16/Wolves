@@ -62,6 +62,29 @@
  <?php }else{echo "you dont have permission to this page";} ?>
 </div>
 <script type="text/javascript">
+  $(function(){
+     updateDate_removed();
+  });
+  function updateDate_removed(){
+      $.ajax({
+           url:"ajax/do-update-product.php",
+           method:'get',
+          data:{},
+          success:function(response){
+            
+             for(var i=0;i<response.length;i++){
+                if($("#prod_"+response[i].product_id).length){
+                   $("#prod_"+response[i].product_id).remove();
+                }
+             }
+             updateDate_removed();   
+          },
+          complete:function(){
+          }, cache: false,
+          async:true,
+          dataType:'json'
+      });
+  }
   function calculateall(){
     var priceall=0;
     $("#orders li").each(function(){
