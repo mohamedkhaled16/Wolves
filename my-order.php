@@ -10,8 +10,13 @@
 
     ?>
     <div class="search">
-      <input type="date" value="">
+      <p>From: <input type="text" id="datepicker">
+       To: <input type="text" id="datepicker2">
+       <input type="button" name="search" value="Search" onclick="seach_order()">
+       </p>
+     
     </div>
+    <div class="data">
         <table class="table table-striped text-left">
      <tr>
        <th>Order Date</th>
@@ -74,25 +79,57 @@
   <p class="clearfix"></p>
   <ul class="pagination  pagination-lg col-sm-offset-6">
       <?php
-           /* echo " <li ";
-            if($GLOBALS['page']==1){echo " class='active'" ; }
-            echo "><a href='my-order.php?page=1'>first page</a></li>";  */
       for ($i=1; $i<=$total_pages; $i++) { 
             echo "<li ";
             if($i==$GLOBALS['page']){echo " class='active'" ; }
             echo "><a href='my-order.php?page=$i' >$i</a></li>";  
       }
-/*          echo " <li ";
-          if($total_pages==$GLOBALS['page']){echo " class='active'" ; }
-          echo"><a href='my-order.php?page=$total_pages'>last page</a></li>";  
-*/
 ?>
       </ul>
+      </div>
       <p class="clearfix"></p>
  <?php }else{
   echo "you dont have permission to this page";
   } ?>
 </div>
+ <script type="text/javascript">
+          function seach_order(){
+            var startDate = new Date($('#datepicker').val());
+            var endDate = new Date($('#datepicker2').val());
+
+            if($("#datepicker2").val()== '' ||$("#datepicker").val()== ''){
+              alert("please enter from date and to date");
+            }else if(startDate > endDate ){
+                alert("wrong date");
+            }else{
+
+              $.ajax({
+               url:"ajax/search-myorder.php",
+               method:'get',
+              data:{
+                "from":$("#datepicker").val(),
+                "to":$("#datepicker2").val()
+               },
+              success:function(response){
+                $('.data').html(response);        
+              },
+              complete:function(){
+              }, cache: false,
+              async:true
+          });
+ 
+            }
+
+          }
+      </script>
+<script>
+  $(function() {
+   $( "#datepicker" ).datepicker({
+     dateFormat: 'yy-mm-dd' 
+   });
+  $( "#datepicker2" ).datepicker({dateFormat: 'yy-mm-dd' });
+  });
+  </script>
 <script type="text/javascript">
   function cancleOrder(id){
       $.ajax({
@@ -122,7 +159,6 @@
            method:'get',
           data:{},
           success:function(response){
-             console.log(response.length);
              for(var i=0;i<response.length;i++){
               $("#par_"+response[i].order_id+" td:last").html("");
                if(response[i].status=='delivered'){
