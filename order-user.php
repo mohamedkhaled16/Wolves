@@ -61,18 +61,45 @@
 <script type="text/javascript">
   $(function(){
      updateDate_removed();
+     updateDate_added();
+
   });
+  function updateDate_added(){
+      $.ajax({
+           url:"ajax/do-update-product-add.php",
+           method:'get',
+          success:function(response){           
+             for(var i=0;i<response.length;i++){
+               if($("#prod_"+response[i].product_id).length==0){
+                  var prod="<div class='col-md-3 col-xs-6 prod' data='"+response[i].product_name+"' id='prod_"+response[i].product_id+"'";
+                      prod+="onclick='addproduct("+response[i].product_id+")'>"; 
+                      prod+=" <span class='badge' id='price_"+response[i].product_id+"'";
+                      prod+=" data='"+response[i].product_price+"'>"+response[i].product_price +"L.E </span>";
+                      prod+="<img src='uploads/"+response[i].image+"' />"; 
+                      prod+="<h3>"+response[i].product_name+"</h3></div>";    
+                      $('.right_order').append(prod);
+                   }
+                }
+               updateDate_added();   
+             },
+          complete:function(){
+          }, cache: false,
+          async:true,
+          dataType:'json'
+      });     
+  }
+
   function updateDate_removed(){
       $.ajax({
            url:"ajax/do-update-product.php",
            method:'get',
           data:{},
-          success:function(response){
-            
+          success:function(response){     
              for(var i=0;i<response.length;i++){
                 if($("#prod_"+response[i].product_id).length){
                    $("#prod_"+response[i].product_id).remove();
-                } if($("#prod_last_"+response[i].product_id).length){
+                } 
+                if($("#prod_last_"+response[i].product_id).length){
                    $("#prod_last_"+response[i].product_id).remove();
                 }
              }
