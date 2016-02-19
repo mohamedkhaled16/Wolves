@@ -66,12 +66,12 @@ $.post("ajax/get-checks-products.php",
      $total_pages = ceil($total_records / $GLOBALS['num_rec_per_page']); 
 
     ?>
-        <table class="table table-striped text-left">
+        <table class="table table-striped text-left" id="mkvalues">
      <tr>
        <th>Name</th>
        <th>Total Amount</th>
      </tr>
-     <mk id="mk-values">
+
   <?php
     foreach ($order as $data) {
 
@@ -85,7 +85,7 @@ $.post("ajax/get-checks-products.php",
      
 <?php    }
   ?>
-  </mk>
+  
      </table>
 <div style="display:none" id="checksdetails">
 
@@ -114,25 +114,41 @@ $.post("ajax/get-checks-products.php",
 
  <script type="text/javascript">
           function seach_checks(){
+          FilterDateFlag = "false";
+          FilterUIDFlag = "false";
             var startDate = new Date($('#datepicker').val());
             var endDate = new Date($('#datepicker2').val());
+            var UID = $("#user_id").val();
 
-            if($("#datepicker2").val()== '' ||$("#datepicker").val()== ''){
-              alert("please enter from date and to date");
-            }else if(startDate > endDate ){
-                alert("wrong date");
-            }else{
+            if(startDate != '' && endDate != '' && startDate < endDate){
+              
+              FilterDateFlag = "true";
+            }
+            
+            if(UID != ""){
+            	FilterUIDFlag = "true";
+            }
+            
+            
+            
+            if(FilterDateFlag == "false" && FilterUIDFlag == "false"){
+            	alert("Please fill one of the option to filter using it...");
+            }
+            /*else if(FilterDateFlag == "flase"){
+            	alert("Please enter a valid dates ...");
+            }*/
+            else {
 
               $.ajax({
                url:"ajax/search-checks.php",
                method:'post',
               data:{
-                "from":$("#datepicker").val(),
-                "to":$("#datepicker2").val(),
-                "UID":$("#user_id").val()
+                "from":$('#datepicker').val(),
+                "to":$('#datepicker2').val(),
+                "UID":UID
                },
               success:function(response){
-                $('.mk-values').html(response);        
+                $("#mkvalues").html(response);        
               },
               complete:function(){
               }, cache: false,

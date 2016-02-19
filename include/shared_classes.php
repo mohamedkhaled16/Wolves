@@ -52,6 +52,27 @@ class sharedmethods{
 	     $query=$GLOBALS['db']->select($tables,$data,$condition);
 	     return $query;
 	 }
+	 
+	 
+	  function getTotalsfiltration($FDate,$TDate,$UID){
+        $tables="users,orders,orders_details";
+	     $data=['users.user_id','users.name','SUM(orders_details.product_price  * orders_details.product_count) AS TotalAmount'];
+	     $condition="orders.user_id=users.user_id
+	                 and orders.status='done'
+	                 AND orders.order_id = orders_details.order_id";
+	                 
+	                 if(!empty($FDate)&& !empty($TDate) && $TDate >= $FDate ){
+	                 	$condition.=" AND date >= '{$FDate}' and date <= '{$TDate}' ";
+	                 }
+	                 if(!empty($UID)){
+	                 	$condition.=" And orders.user_id = $UID ";
+	                 }
+	                $condition.="HAVING SUM(orders_details.product_price  * orders_details.product_count) >0 ";
+	                $condition.="order by orders.order_id desc";
+	     $query=$GLOBALS['db']->select($tables,$data,$condition);
+	     return $query;
+	 }
+	 
 	 function getTotals_pagination(){
 
         $tables="users,orders,orders_details";
