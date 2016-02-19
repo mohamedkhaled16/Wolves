@@ -1,4 +1,6 @@
-<?php include("include/header.php"); ?>
+<?php include("include/header.php"); 
+$users=$shared->selectUsers();
+?>
 <script>
 
 function getChecksDetails(UID){
@@ -42,6 +44,21 @@ $.post("ajax/get-checks-products.php",
 <div class="container page-header " style="min-height:400px;" >
   <h1 class="text-left">Checks </h1>
   <hr/>
+  <div class="search col-lg-9 col-md-6 col-sm-5 form-inline">
+      <p>From: <input class="form-control inline" type="text" id="datepicker">
+       To: <input class="form-control inline" type="text" id="datepicker2">
+       User:  <select class="form-control inline" name="userid" id="user_id">
+         <option value="">choose</option>
+          <?php 
+              foreach ($users as $user) {
+                  echo" <option value='".$user['user_id']."'>".$user['name']."</option>";
+              }          
+          ?>
+         </select>
+       <input type="button" name="search" value="Search" onclick="seach_checks()">
+       </p>
+     
+    </div>
   <?php if($_SESSION['usertype']=='admin'){ 
     $order=$shared->getTotals_pagination();
     $res_all=$shared->getTotals();
@@ -54,6 +71,7 @@ $.post("ajax/get-checks-products.php",
        <th>Name</th>
        <th>Total Amount</th>
      </tr>
+     <mk id="mk-values">
   <?php
     foreach ($order as $data) {
 
@@ -67,6 +85,7 @@ $.post("ajax/get-checks-products.php",
      
 <?php    }
   ?>
+  </mk>
      </table>
 <div style="display:none" id="checksdetails">
 
@@ -92,4 +111,45 @@ $.post("ajax/get-checks-products.php",
   echo "you dont have permission to this page";
   } ?>
 </div>
+
+ <script type="text/javascript">
+          function seach_checks(){
+            var startDate = new Date($('#datepicker').val());
+            var endDate = new Date($('#datepicker2').val());
+
+            if($("#datepicker2").val()== '' ||$("#datepicker").val()== ''){
+              alert("please enter from date and to date");
+            }else if(startDate > endDate ){
+                alert("wrong date");
+            }else{
+
+              $.ajax({
+               url:"ajax/search-checks.php",
+               method:'post',
+              data:{
+                "from":$("#datepicker").val(),
+                "to":$("#datepicker2").val(),
+                "UID":$("#user_id").val()
+               },
+              success:function(response){
+                $('.mk-values').html(response);        
+              },
+              complete:function(){
+              }, cache: false,
+              async:true
+          });
+ 
+            }
+
+          }
+      </script>
+
+<script>
+  $(function() {
+   $( "#datepicker" ).datepicker({
+     dateFormat: 'yy-mm-dd' 
+   });
+  $( "#datepicker2" ).datepicker({dateFormat: 'yy-mm-dd' });
+  });
+  </script>
 <?php include("include/footer.php"); ?>
