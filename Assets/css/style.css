@@ -1,7 +1,6 @@
 body{
 	background: url(../img/bg.jpg) ;
 	border-top: solid 6px #75420A;
-	border-bottom:  solid 6px #75420A;
 }
 body .btn-group-justified>.btn-group .dropdown-menu{
     width: 100%;
@@ -179,6 +178,24 @@ body .btn-group-justified>.btn-group .dropdown-menu{
 	max-width: 100px;
 	max-height:100px;
 	margin: 0 auto;
+}.footerimg{
+	width: 120px;
+	height:120px;
+
+}.foot{
+	 background: rgb(117, 70, 21);
+    border-top: solid 4px #2B0000;
+    border-bottom: solid 4px #2B0000;
+}.copy{
+	color: #E8C68A;
+    text-align: center;
+    position: relative;
+    top: 83px;
+}.table a{
+	background: #2B0000;
+    padding: 5px;
+    border-radius: 5px;
+    color: #F5D299;
 }
 
 
