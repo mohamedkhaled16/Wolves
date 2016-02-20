@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="Assets/font-awesome-4.5.0/css/font-awesome.css">
 </head>
 <body>
+<img src="Assets/img/logo.png" class="logo">
 <!-- ---------------------------------------------------------------------------- -->
 <div class="container ">
 	<h1 class="title"> Login</h1>
 <hr />
-<br />
-<br />
+
 <!-- ------------------------------------------------------------------------------------- -->
-<div class="form-horizontal">
+<div class="form-horizontal login col-md-offset-2 col-md-7">
  <?php
   $flag=1;
  if(isset($_POST['login'])){

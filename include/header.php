@@ -18,6 +18,8 @@
 </head>
 <body>
 <div class="container-fluid text-center">
+<img src="Assets/img/logo.png" class="logo pull-left">
+<p class="clearfix"></p>
 
 <?php 
    include __DIR__."/check-login.php";

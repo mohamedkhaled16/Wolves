@@ -76,7 +76,7 @@ window.location.href = "add-user.php?UID="+UID;
 				echo "<tr id='row$user_id'>";
 				echo "<td>$name</td>";
 				echo "<td>$room_no</td>";
-				echo "<td><img style='width:200px' class='img-rounded img-responsive'  src='uploads/$image'></td>";
+				echo "<td><img  class='img-rounded img-responsive userimg'  src='uploads/$image'></td>";
 				echo "<td>$ext</td>";
 				echo '<td>';
 				echo '<a href="javascript:void(0);" class="text-primary" onclick="editUser('.$user_id.')" id="edit'.$user_id.'"><i class="fa fa-pencil-square-o fa-3x"></i></a>';

@@ -86,7 +86,7 @@ window.location.href = "add-product.php?PID="+PID;
   </div>
 </div>
 <div class="table-responsive">
-			<table class="table table-striped table-hover table-bordered table-condensed table-hover">
+			<table class="table table-striped ">
 			<tr>
                 <th>Product</th>
 				<th>Price</th>

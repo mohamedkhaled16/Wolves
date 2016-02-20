@@ -73,7 +73,7 @@
 <?php    }
   ?>
      </table>
-     <h3 class="blue pull-right"><?php echo $all.'  EGP' ?></h3>
+     <!--<h3 class="blue pull-right"><?php echo $all.'  EGP' ?></h3>-->
 
    
   <p class="clearfix"></p>
