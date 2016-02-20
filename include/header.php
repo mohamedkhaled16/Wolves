@@ -18,10 +18,10 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-<?php if(empty($_SESSION['user_id'])){  
-	///check user login
-	header('location:login.php'); 
- }
+
+<?php 
+   include __DIR__."/check-login.php";
+
  $user=$shared->getUserData($_SESSION['user_id']); 
  ?>
 <div  id="my-modal" class="modal" data-keyboard = "true" data-backdrop="true">

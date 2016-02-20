@@ -2,7 +2,7 @@
    error_reporting(E_ALL);
    ini_set('display_errors', 1);
  require_once __DIR__."/include/header.php" ;
-
+  include("include/check-admin.php"); 
   $result=$admin->select_users_pagination();
   $res_all=$admin->select_users();
   $total_records = count($res_all);  //count number of records

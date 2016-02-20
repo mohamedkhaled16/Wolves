@@ -1,6 +1,6 @@
 <?php 
     include "include/header.php";
-    
+  include("include/check-admin.php");   
     
 $user_id="";
 $name="";

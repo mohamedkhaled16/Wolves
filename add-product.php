@@ -1,5 +1,5 @@
 <?php include "include/header.php" ;
-
+include("include/check-admin.php");
 $product_id="";
 $product_name="";
 $product_price="";

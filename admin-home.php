@@ -2,6 +2,7 @@
 <div class="container page-header " style="min-height:400px;" >
   <h1 class="text-left">order </h1>
   <hr/>
+  <?php include("include/check-admin.php"); ?>
   <?php if($_SESSION['usertype']=='admin'){ 
     $order=$shared->getCurrentOrders();
     ?>

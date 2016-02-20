@@ -75,7 +75,7 @@ class dbmethods {
         }
         $inFieldsSql = "(" . implode($indexArray, ",") . ")";
         $inValuesSql = "('" . implode($valueArray, "','") . "')";
-        $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
+        echo $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
         
         //echo $sql;
         $result = mysqli_query($this->link, $sql);
