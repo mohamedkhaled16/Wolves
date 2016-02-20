@@ -12,13 +12,19 @@ $condition="orders.user_id=users.user_id
 	                 and orders.status='processing'
 	                 and order_id > '{$id}' 
 	                 order by orders.order_id desc";
-      
-//while (count($query)==0){
+    $orders_data=$GLOBALS['db']->select($tables,$arr,$condition);  
+
+/*while (true){
+ if(count($orders_data)==0){
+ clearstatcache();
    $orders_data=$GLOBALS['db']->select($tables,$arr,$condition);
-  // sleep(1000);
-//}
+   usleep(5000000);
+    }
+    else {break;}
+}*/
    if(count($orders_data)==0){
    	echo "0";
+   	   	//sleep(10000);
    }else{
    	sleep(1);
 foreach ($orders_data as $data_a) {
@@ -33,13 +39,13 @@ foreach ($orders_data as $data_a) {
 
 ?>
   <tr class='tr' id="par_<?php echo $data_a['order_id']?>">
-       <td><?php echo $data_a['date']?></td>
-       <td><?php echo $data_a['name']?></td>
-       <td><?php echo $data_a['room_number']?></td>
-       <td><?php echo $data_a['ext']?></td>
+       <td onclick="$('#tr_<?php echo $data_a['order_id']?>').slideToggle();"><?php echo $data_a['date']?></td>
+       <td onclick="$('#tr_<?php echo $data_a['order_id']?>').slideToggle();"><?php echo $data_a['name']?></td>
+       <td onclick="$('#tr_<?php echo $data_a['order_id']?>').slideToggle();"><?php echo $data_a['room_number']?></td>
+       <td onclick="$('#tr_<?php echo $data_a['order_id']?>').slideToggle();"><?php echo $data_a['ext']?></td>
        <td><a href="javascript:void(0)" onclick="changeStatus(<?php echo $data_a['order_id']?>)">Deliver</a></td>
      </tr>
-     <tr id="tr_<?php echo $data_a['order_id']?>" data="<?php echo $data_a['order_id']?>">
+     <tr id="tr_<?php echo $data_a['order_id']?>" data="<?php echo $data_a['order_id']?>" style="display: none;">
        <td colspan="5">
          <?php
            //var_dump($order_details);

@@ -20,13 +20,13 @@
 ?>
      <!--<tr onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();" class='tr' id="par_<?php echo $data['order_id']?>">-->
     <tr class='tr' id="par_<?php echo $data['order_id']?>">
-       <td><?php echo $data['date']?></td>
-       <td><?php echo $data['name']?></td>
-       <td><?php echo $data['room_number']?></td>
-       <td><?php echo $data['ext']?></td>
-       <td><a href="javascript:void(0)" onclick="changeStatus(<?php echo $data['order_id']?>)">Deliver</a></td>
+       <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['date']?></td>
+       <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['name']?></td>
+       <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['room_number']?></td>
+       <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['ext']?></td>
+       <td ><a href="javascript:void(0)" onclick="changeStatus(<?php echo $data['order_id']?>)">Deliver</a></td>
      </tr>
-     <tr id="tr_<?php echo $data['order_id']?>" data="<?php echo $data['order_id']?>">
+     <tr id="tr_<?php echo $data['order_id']?>" data="<?php echo $data['order_id']?>" style="display: none;">
        <td colspan="5">
          <?php
              $total=0;
