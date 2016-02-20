@@ -11,6 +11,8 @@ class admin extends ProudctDB {
               return $number;
             }
 		}
+		
+		
 	function insert_user($data){
       $query=$GLOBALS['db']->add("users",$data);
       return $query;

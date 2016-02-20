@@ -128,6 +128,20 @@ class sharedmethods{
 	     return $query;
      }
      
+     
+     function checkEmailForgetPass($email){
+		   $data=array();
+		   $query=$GLOBALS['db']->select("users",$data,"email='{$email}'");
+			$res=$GLOBALS['db']->query($query);
+			return $query;
+            
+		}
+     
+     function insert_ResetPass($data){
+      $query=$GLOBALS['db']->add("forget_password",$data);
+      return $query;
+	}
+     
 
 }
 
