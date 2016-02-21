@@ -1,4 +1,5 @@
 <?php
+//if ($_SERVER['HTTP_REFERER'] != "http://wolves-cafeteria.rhcloud.com/admin-home.php"){exit;}
 include __DIR__."/../include/classes_header.php";
 $from =$_GET['from'];
 $to=$_GET['to'];
@@ -40,7 +41,7 @@ $order=$GLOBALS['db']->select($tables,$data,$condition);
        <td><?php echo $total .' EGP '; ?></td>
        <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();">
            <?php if($data['status']=="processing"){
-              echo "<a href='javascript:void(0)' onclick='cancleOrder(".$data['order_id'].")' >Cancle</a>";
+              echo "<a href='javascript:void(0)' onclick='cancleOrder(".$data['order_id'].")'class='link' >Cancle</a>";
              }
             ?>
        </td>

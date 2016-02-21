@@ -10,6 +10,27 @@
     <script src="Assets/js/bootstrap.js"></script>
     <script src="Assets/js/validate.js"></script>
     <link rel="stylesheet" href="Assets/font-awesome-4.5.0/css/font-awesome.css">
+    
+    
+    <script type="text/javascript">
+$(document).ready(function (e){
+$("#DoForgetPassword").on('submit',(function(e){
+e.preventDefault();
+$.ajax({
+url: "ajax/do-forget-password.php",
+type: "POST",
+data:  new FormData(this),
+contentType: false,
+cache: false,
+processData:false,
+success: function(data){
+$("#result").html(data);
+},
+error: function(){} 	        
+});
+}));
+});
+</script>
 </head>
 <body>
 <!-- ---------------------------------------------------------------------------- -->
@@ -20,9 +41,11 @@
 <br />
 <!-- ------------------------------------------------------------------------------------- -->
 <div class="form-horizontal">
+<div id="result">
 
+</div>
 <!----------------------------------------------------------------------------------------- -->
-		<form role="form" class="form-horizontal" action="ajax/do-forget-password.php" method="post">
+		<form id="DoForgetPassword" role="form" class="form-horizontal" action="ajax/do-forget-password.php" method="post">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="mail">E-Mail</label>
 				<div class="col-sm-10">

@@ -1,5 +1,5 @@
 <?php
-
+   if ($_SERVER['HTTP_REFERER'] != "http://wolves-cafeteria.rhcloud.com/my-order.php"){exit;}
  include __DIR__."/../include/classes_header.php";
  $id=intval($_GET['id']);
   if(!empty($id)){

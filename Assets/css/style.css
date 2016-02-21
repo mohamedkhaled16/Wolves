@@ -191,7 +191,7 @@ body .btn-group-justified>.btn-group .dropdown-menu{
     text-align: center;
     position: relative;
     top: 83px;
-}.table a{
+}.table a.link{
 	background: #2B0000;
     padding: 5px;
     border-radius: 5px;

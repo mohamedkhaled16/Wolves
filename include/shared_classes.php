@@ -141,8 +141,27 @@ class sharedmethods{
       $query=$GLOBALS['db']->add("forget_password",$data);
       return $query;
 	}
+	
+function checkPassCode($code){
+		   $data=array('status'=>'active');
+		   $query=$GLOBALS['db']->select("forget_password",$data,"secret='{$code}'");
+			$res=$GLOBALS['db']->query($query);
+			return $query; 
+            
+		}
      
-
+     function user_update_pass($array,$id){
+      $query=$GLOBALS['db']->edit("users",$array,"user_id=".$id);
+      return $query;
+	}
+	
+	
+	
+   function reset_pass_code($code){
+   $data=array('status'=>'inactive');
+      $query=$GLOBALS['db']->edit("users",$array,"secret=".$code);
+      return $query;
+	}
 }
 
 ?>

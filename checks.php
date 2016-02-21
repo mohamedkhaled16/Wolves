@@ -95,6 +95,7 @@ $.post("ajax/get-checks-products.php",
 <div style="display:none;" id="checksproducts">
 
 </div>   
+<p style="clear:both"></p>
   <ul class="pagination  pagination-lg col-sm-offset-6">
                <?php
                    for ($i=1; $i<=$total_pages; $i++) { 
@@ -138,7 +139,9 @@ $.post("ajax/get-checks-products.php",
             	alert("Please enter a valid dates ...");
             }*/
             else {
-
+            
+$("#checksproducts").html("");
+$("#checksdetails").html("");
               $.ajax({
                url:"ajax/search-checks.php",
                method:'post',

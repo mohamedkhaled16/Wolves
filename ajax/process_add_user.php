@@ -1,4 +1,5 @@
 <?php 
+   if ($_SERVER['HTTP_REFERER'] != "http://wolves-cafeteria.rhcloud.com/add-user.php"){exit;}   
         $name=$_POST['name'];   
         $email=$_POST['email'];   
         $password=$_POST['password'];   

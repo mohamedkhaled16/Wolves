@@ -51,7 +51,7 @@ class dbmethods {
             }
             mysqli_free_result($result);
         }
-        echo $sql;
+        //echo $sql;
        //print_r($data);
         return $data;
     }
@@ -75,7 +75,7 @@ class dbmethods {
         }
         $inFieldsSql = "(" . implode($indexArray, ",") . ")";
         $inValuesSql = "('" . implode($valueArray, "','") . "')";
-        echo $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
+        $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
         
         //echo $sql;
         $result = mysqli_query($this->link, $sql);

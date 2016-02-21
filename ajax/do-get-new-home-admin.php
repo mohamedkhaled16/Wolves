@@ -1,6 +1,8 @@
 <?php 
    //error_reporting(E_ALL);
    //ini_set('display_errors', 1);
+
+ if ($_SERVER['HTTP_REFERER'] != "http://wolves-cafeteria.rhcloud.com/admin-home.php"){exit;}
 require_once __DIR__."/../include/classes_header.php" ;
 //$data = array();
 # escape all submitted values
@@ -43,7 +45,7 @@ foreach ($orders_data as $data_a) {
        <td onclick="$('#tr_<?php echo $data_a['order_id']?>').slideToggle();"><?php echo $data_a['name']?></td>
        <td onclick="$('#tr_<?php echo $data_a['order_id']?>').slideToggle();"><?php echo $data_a['room_number']?></td>
        <td onclick="$('#tr_<?php echo $data_a['order_id']?>').slideToggle();"><?php echo $data_a['ext']?></td>
-       <td><a href="javascript:void(0)" onclick="changeStatus(<?php echo $data_a['order_id']?>)">Deliver</a></td>
+       <td><a href="javascript:void(0)" onclick="changeStatus(<?php echo $data_a['order_id']?>)" class="link">Deliver</a></td>
      </tr>
      <tr id="tr_<?php echo $data_a['order_id']?>" data="<?php echo $data_a['order_id']?>" style="display: none;">
        <td colspan="5">

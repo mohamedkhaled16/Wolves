@@ -47,7 +47,7 @@
        <td><?php echo $total .' EGP '; ?></td>
        <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();">
            <?php if($data['status']=="processing"){
-              echo "<a href='javascript:void(0)' onclick='cancleOrder(".$data['order_id'].")' >Cancle</a>";
+              echo "<a class='link' href='javascript:void(0)' onclick='cancleOrder(".$data['order_id'].")' >Cancle</a>";
              }
             ?>
        </td>
@@ -82,7 +82,7 @@
       for ($i=1; $i<=$total_pages; $i++) { 
             echo "<li ";
             if($i==$GLOBALS['page']){echo " class='active'" ; }
-            echo "><a href='my-order.php?page=$i' >$i</a></li>";  
+            echo "><a class='link' href='my-order.php?page=$i' >$i</a></li>";  
       }
 ?>
       </ul>

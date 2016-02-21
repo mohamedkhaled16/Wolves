@@ -1,6 +1,8 @@
 <?php 
    //error_reporting(E_ALL);
    //ini_set('display_errors', 1);
+   //if ($_SERVER['HTTP_REFERER'] != "http://wolves-cafeteria.rhcloud.com/admin-home.php"){exit;}   
+   
 require_once __DIR__."/../include/classes_header.php" ;
 //$data = array();
 # escape all submitted values

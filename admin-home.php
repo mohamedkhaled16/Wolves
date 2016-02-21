@@ -25,7 +25,7 @@
        <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['name']?></td>
        <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['room_number']?></td>
        <td onclick="$('#tr_<?php echo $data['order_id']?>').slideToggle();"><?php echo $data['ext']?></td>
-       <td ><a href="javascript:void(0)" onclick="changeStatus(<?php echo $data['order_id']?>)">Deliver</a></td>
+       <td ><a class="link" href="javascript:void(0)" onclick="changeStatus(<?php echo $data['order_id']?>)">Deliver</a></td>
      </tr>
      <tr id="tr_<?php echo $data['order_id']?>" data="<?php echo $data['order_id']?>" style="display: none;">
        <td colspan="5">

@@ -63,7 +63,7 @@ error: function(){}
     </div>
     <div class="col-sm-4"></div>
     <div class="col-sm-4"></div>
-</div>
+</div> 
 <!-- Creating the form -->
 <div class="row">
     <div class="container">
