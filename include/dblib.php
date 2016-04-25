@@ -1,7 +1,6 @@
 <?php
-//error_reporting(E_ALL);
 //ini_set('display_errors', 1);
-require_once('dbconn.php');
+require_once(__DIR__.'/dbconn.php');
 class dbmethods {
     private $db;// = Database::getInstance();
     private $link = null;
@@ -52,7 +51,8 @@ class dbmethods {
             }
             mysqli_free_result($result);
         }
-        //print_r($data);
+        //echo $sql;
+       //print_r($data);
         return $data;
     }
     /* ================================================================================================= */
@@ -76,9 +76,36 @@ class dbmethods {
         $inFieldsSql = "(" . implode($indexArray, ",") . ")";
         $inValuesSql = "('" . implode($valueArray, "','") . "')";
         $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
+        
+        //echo $sql;
         $result = mysqli_query($this->link, $sql);
+         //   printf("Errormessage: %s\n", mysqli_error($this->link));
+
         return $result;
     }
+
+public function addId($table = "", $inFields = array()) {
+        if ($table == "" || empty($inFields))
+            return false;
+        $indexArray = array();
+        $valueArray = array();
+        if (!empty($inFields)) {
+            foreach ($inFields as $index => $value) {
+                $indexArray[] = $index;
+                $valueArray[] = mysqli_real_escape_string($this->link, $value);
+            }
+        }
+        $inFieldsSql = "(" . implode($indexArray, ",") . ")";
+        $inValuesSql = "('" . implode($valueArray, "','") . "')";
+        $sql = "INSERT INTO " . $table . " " . $inFieldsSql . " VALUES " . $inValuesSql;
+        
+        //echo $sql;
+        $result = mysqli_query($this->link, $sql);
+         //   printf("Errormessage: %s\n", mysqli_error($this->link));
+           
+        return mysqli_insert_id($this->link);
+    }
+
 
     /* =================================================================================================     */
     /*
@@ -100,6 +127,7 @@ class dbmethods {
             $editFieldsSql = implode($editFieldsArray, ",");
         }
         $sql = "UPDATE " . $table . " SET " . $editFieldsSql . " WHERE " . $condition;
+        
         $result = mysqli_query($this->link, $sql);
         return $result;
     }
@@ -119,6 +147,7 @@ class dbmethods {
         return $result;
     }
     public function query($query) {
+        $data='';
         $sql = $query;
         $result = mysqli_query($this->link, $sql);
         if ($result) {
@@ -142,7 +171,7 @@ class dbmethods {
     public function queryId($query) {
         $sql = $query;
         $result = mysqli_query($this->link, $sql);
-        echo mysqli_insert_id($this->link);
+        //echo mysqli_insert_id($this->link);
         return mysqli_insert_id($this->link);
     }
 }

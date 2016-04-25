@@ -1,101 +1,165 @@
+<?php 
+   error_reporting(E_ALL);
+   ini_set('display_errors', 1);
+ require_once __DIR__."/include/header.php" ;
+include("include/check-admin.php");
+  $result=$admin->select_products();
+  $res_all=$admin->select_products_All();
+  $total_records = count($res_all);  //count number of records
+  $total_pages = ceil($total_records / $GLOBALS['num_rec_per_page']); 
+?>
 
+<script>
+function changeProudctStatusUnAvail(PID){
+$.post("ajax/do-product.php",
+    {
+        product_id: PID,
+        product_unavail: "product_unavail"
+    },
+    function(data, status){
+    if(  status == "success" && data == 1){    
+    $('#status'+PID).removeClass("text-success");
+	    $('#status'+PID).addClass("text-danger");
+	    $('#statusspan'+PID).html("UnAvialble");
+	$('#status'+PID).attr("onclick","changeProudctStatusAvail("+PID+")");
+	$('#status'+PID).html('<i class="fa fa-toggle-off fa-3x"></i>');
+    }
 
+    });
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>all-products</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<style>
-	
-	</style>
-	<script src="js/jquery-1.11.2.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+function changeProudctStatusAvail(PID){
+$.post("ajax/do-product.php",
+    {
+        product_id: PID,
+        product_avail: "product_avail"
+    },
+    function(data, status){
+    if(  status == "success" && data == 1){
+	   $('#status'+PID).addClass("text-success");
+    $('#status'+PID).removeClass("text-danger"); 
+    $('#statusspan'+PID).html("Avialble");
+    $('#status'+PID).attr("onclick","changeProudctStatusUnAvail("+PID+")");
+    $('#status'+PID).html('<i class="fa fa-toggle-on fa-3x"></i>');
+    
+    
+    }
 
-</head>
-<body>
-<div class="container">
+    });
+}
 
-		<nav class="navbar">
-		<div class="container-fluid navbar-fixed-top navbar-inverse">
-			<div class="navbar-header">
-				<button class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
-					<span class="glyphicon glyphicon-align-justify"></span>
-				</button>
-				<div class="navbar-brand">
-					<a href="www.google.com"><img src="" alt="" class="" width="30" height="30" /></a>
-					
-				</div>
-			</div>
-			<div class="collapse navbar-collapse" id="my-navbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a  href="#">Home</a></li>
-					<li ><a  href="#">Products</a></li>
-					<li ><a  href="#">Users</a></li>
-					<li ><a  href="#">Manual order</a></li>
-					<li ><a  href="#">Checks</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a  href="#">Admin</a></li>
-						<li><div class="navbar-brand">
-								<a href="#"><img src="" alt="" class="" width="30" height="30" /></a>
-						
-							</div>
-					</li>
-				</ul>	
-			</div>
-			
-		</div>	
-	</nav>
+function deleteProudct(PID){
+
+$.post("ajax/do-product.php",
+    {
+        product_id: PID,
+        delete_p: "delete_p"
+    },
+    function(data, status){
+    //alert(data+"status"+status);
+    if(status == "success"){
+    //alert(PID);
+    $('#row'+PID).remove();
+    }
+
+    });
+}
+
+function editProudct(PID){
+window.location.href = "add-product.php?PID="+PID;
+
+}
+
+</script>
+
 <!-- ---------------------------------------------------------------------------- -->
-<div>
-	<h1> All Products</h1>
-	<a href="add-products.html" align="left">Add product</a> 
 
+<div class="container">
+<div class="row">
+
+	<div class="col-sm-3">
+		<h1>All Products</h1> 
+	</div>
+	
+	<div class="col-sm-3">
+   <h4><a href="add-product.php">Add Proudct</a></h4> 
+  </div>
 </div>
 <div class="table-responsive">
-			<table class="table table-hover table-bordered table-condensed table-hover">
+			<table class="table table-striped ">
 			<tr>
                 <th>Product</th>
 				<th>Price</th>
-				<th>Image</th>
-				<th>Action</th>
+				<th style="width:200px" width="200">Image</th>
+				<th style="width:300px" width="300">Action</th>
 
 			</tr>
-			<tr>
-				<td>Hello 1</td>
-				<td>Hello 2</td>
-				<td><img src="#"></td>
-				<td>Hello 4</td>
+			<?php
+			
+			          if($result){
+		foreach($result as $row) {
+				$product_id=$row['product_id'];
+				$product_name=$row['product_name'];
+				$product_price=$row['product_price'];
+				$category_id=$row['category_id'];
+				$status=$row['status'];
+				$display=$row['display'];
+				$image=$row['image'];
+				echo "<tr id='row$product_id'>";
+				echo "<td>$product_name</td>";
+				echo "<td>$product_price</td>";
+				echo "<td><img class='img-rounded img-responsive thumb'  src='uploads/$image' ></td>";
+				echo '<td>';
+				if($status == "unavailable"){
+				echo '<span id="statusspan'.$product_id.'" >UnAvailable</span><a href="javascript:void(0);" class="text-danger" onclick="changeProudctStatusAvail('.$product_id.')" id="status'.$product_id.'"><i class="fa fa-toggle-off fa-3x"></i></a>';}
+				else{
+				echo '<span id="statusspan'.$product_id.'" >Available</span><a href="javascript:void(0);" class="text-success" onclick="changeProudctStatusUnAvail('.$product_id.')" id="status'.$product_id.'"><i class="fa fa-toggle-on fa-3x"></i></a>';
+				}
+				echo '<a href="javascript:void(0);" class="text-primary" onclick="editProudct('.$product_id.')" id="edit'.$product_id.'"><i class="fa fa-pencil-square-o fa-3x"></i></a>';
+				echo '<a href="javascript:void(0);" class="text-danger" onclick="deleteProudct('.$product_id.')" id="delete'.$product_id.'"><i class="fa fa-trash-o fa-3x"></i></a>';
+				echo '</td>';	
+				echo "</tr>";
+			}
 
-			</tr>
-			<tr>
-				<td>Hello 1</td>
-				<td>Hello 2</td>
-				<td><img src="#"></td>
-				<td>Hello 4</td>
+			}
+			
+			
+			/*
+			
+			<input data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Avalible" data-off="UnAvalible" type="checkbox" onclick="statusProudct('.$product_id.')">
+				<i class="fa fa-camera-retro fa-lg"></i>
+				<a href="javascript:void(0);" class="text-danger" onclick="statusProudct('.$product_id.')"><i class="fa fa-toggle-on fa-4x"></i></a>
+				<a href="#" class="text-success"><i class="fa fa-toggle-on fa-4x"></i></a>
 
-			</tr>
-			<tr>
-				<td>Hello 1</td>
-				<td>Hello 2</td>
-				<td><img src="#"></td>
-				<td>Hello 4</td>
-
-			</tr>
+				
+				
+				<i class="text-danger fa fa-toggle-on fa-4x"></i>
+				
+				
+				<i class="text-primary fa fa-pencil-square-o fa-4x"></i>
+				
+				<i class="text-danger fa fa fa-trash-o fa-4x"></i>
+			*/
+			?>
 		</table>
-		</div>
+		</div></div>
 
 <!----------------------------------------------------------------------------------------- -->
+
 			<ul class="pagination  pagination-lg col-sm-offset-6">
-			  <li><a href="#">1</a></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li><a href="#">4</a></li>
-			  <li><a href="#">5</a></li>
+			<?php
+           /// echo " <li ";
+           // if($GLOBALS['page']==1){echo " class='active'" ; }
+            //echo "><a href='all-products.php?page=1'>first page</a></li>";  
+      for ($i=1; $i<=$total_pages; $i++) { 
+            echo " <li ";
+            if($i==$GLOBALS['page']){echo " class='active'" ; }
+            echo "><a href='all-products.php?page=$i' >$i</a></li>";  
+      }
+      //    echo " <li ";
+       //   if($total_pages==$GLOBALS['page']){echo " class='active'" ; }
+         // echo"><a href='all-products.php?page=$total_pages'>last page</a></li>";  
+
+?>
 			</ul>
-</div>
-</body>
-</html>
+<?php include "include/footer.php" ;?>

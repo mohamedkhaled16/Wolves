@@ -1,0 +1,201 @@
+body{
+	background: url(../img/bg.jpg) ;
+	border-top: solid 6px #75420A;
+}
+body .btn-group-justified>.btn-group .dropdown-menu{
+    width: 100%;
+    
+}.error{
+	background:#eee;border:solid 1px #ccc;border-radius:5px;
+	padding: 10px;
+}body .error .col-sm-3{
+	color: red;
+}body .error .col-sm-8{
+	color: blue;
+}.captcha{
+	background: #eee;
+	border: solid 1px #ccc;
+	margin: 5px;
+	padding: 5px;
+	font-size: 14px;
+}.red{
+	color: red;
+	text-align: center;
+}.img{
+	width: 100px;
+	height: 100px;
+	border: solid 2px #ccc;
+}body .navbar{
+	border-radius: 0px;
+}.box{
+	border:solid 1px #ccc;
+	min-height: 300px;
+	min-width: 200px;
+}.last_product li{
+   width: 100px;
+   height: 100px;
+   border:solid 1px #ccc;
+   float: left;
+   margin: 5px;
+   list-style: none;
+}.product li{
+   width: 100px;
+   height: 100px;
+   margin: 5px;
+   border:solid 1px #ccc;
+   float: left;
+   list-style: none;
+}.result{
+	margin: 10px;
+	display: none;
+    padding: 10px;
+    border-radius: 5px
+}.user_data{
+ margin: 10px;
+ }.user_data img{ 
+ width: 60px;
+ height: 60px;
+ border-radius: 5px;
+ border:solid 1px #ccc;
+ border-radius: 100%;
+}.left_order{
+    border: solid 1px #BA7326;
+    border-radius: 5px;
+    padding: 4px;
+    min-height: 200px;
+    background: rgba(239, 202, 162, 0.58);
+}.right_order{
+}.right_order img,.prod img {
+   width:100px;
+   height: 100px;
+   border-radius: 5px;
+}.right_order .prod{
+	cursor: pointer;
+	position: relative;
+}.prod .badge{
+	position: absolute;
+    background: #eee;
+    color: #000;
+    border: solid 1px #ccc;
+    right: 6%;
+    top: 0%;
+    padding: 6px;
+}.prod{
+	margin-bottom: 40px; 
+	border-right: solid 1px rgba(43, 0, 0, 0.18);
+	text-align: center;
+}.left_order select,.left_order textarea{
+   width:80%;
+   margin: 0 auto;
+}#orders li{
+	list-style: none;
+	padding-top: 5px;
+    padding-bottom: 5px;
+	text-align: left;
+	font-style: 16px;
+}#orders li span:nth-child(2){
+}#orders li span:nth-child(3){
+}#orders li span{
+	display: inline-block;	
+}#orders .glyphicon{
+	font-size: 13px;
+	cursor: pointer;
+}#orders{
+	padding: 0px;
+	margin: 0px;
+}#orders li .col-md-3,#orders li .col-md-4,#orders li .col-md-2,#orders li .col-md-1{
+	padding-right: 0px;
+	padding-left: 0px; 
+}#total{
+	margin-top: 10px;
+}body .thumb{
+	width:100px;height:100px;border-radius:5px;
+}.border div{
+	border:solid 1px #ccc;
+	min-height: 20px;
+}.border .odd{
+	background: #eee;
+}.border .even{
+	background: #dff0d8;
+}.tr{
+	cursor: pointer;
+}.blue{
+	color: #2B0000;
+}.logo{
+	width: 150px;
+	margin: 10px;
+}.title{
+  color: #401305;
+}.login{
+	background: rgba(253, 250, 231, 0.72);
+    padding: 50px 10px;
+    border-radius: 10px;
+    border: solid 1px #BA7326;
+    margin-bottom: 125px;
+} .btn-primary{
+    background-color: #754615;
+    border-color: #754615;
+    margin-top: 20px;
+
+}.container-fluid{
+  padding-right: 0px;
+  padding-left: 0px;
+}.navbar-inverse{
+  background-color: #2B0000;
+}.navbar-inverse .navbar-nav > li > a{
+	    color: #BA7326;
+}.navbar-inverse .navbar-brand{
+    color: #BA7326;
+}a:hover, a:focus{
+  color: #BA7326;
+  text-decoration: none;
+}a{
+  color: #2B0000;
+  text-decoration: none;
+}.table-striped  > tr:nth-of-type(odd){
+    background-color: rgba(224, 187, 131, 0.42);
+}.table-striped > tbody > tr:nth-child(odd){
+  background-color: rgba(228, 193, 137, 0.64);
+}.table-striped > tbody >  tr:nth-child(even){
+    background-color: rgba(245, 143, 18, 0.33);
+}body .table-striped > tbody > tr:first-child{
+    background: rgb(43, 0, 0);
+    color: #F1CC92;
+ }body .fa-3x{
+ 	font-size: 2em;
+ 	color: #2B0000;
+ 	margin: 33px 12px;
+ }
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    background-color: #75420A;
+    border-color: #75420A;
+}.pagination > li > a, .pagination > li > span{
+	color: #75420A;
+    text-decoration: none;
+    background-color: #F6D29A;
+    border: 1px solid #F9D69E;
+}td .userimg{
+	max-width: 100px;
+	max-height:100px;
+	margin: 0 auto;
+}.footerimg{
+	width: 120px;
+	height:120px;
+
+}.foot{
+	 background: rgb(117, 70, 21);
+    border-top: solid 4px #2B0000;
+    border-bottom: solid 4px #2B0000;
+}.copy{
+	color: #E8C68A;
+    text-align: center;
+    position: relative;
+    top: 83px;
+}.table a.link{
+	background: #2B0000;
+    padding: 5px;
+    border-radius: 5px;
+    color: #F5D299;
+}
+
+

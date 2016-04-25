@@ -1,12 +1,10 @@
-<?php
+<?php 
+include("include/header.php"); 
 
-   include 'include/dblib.php'; 
-   $db = new dbmethods();
-   $data=$db->select("users","","");
-   var_dump($data);
-  // echo $data[0]['user_id'];
- //  foreach ($data as $d) {
-   //	 echo "{$d['user_id']}";
-   //}
-
-?>
+if($_SESSION['usertype']=='user'){
+	header("location:order-user.php");
+}elseif($_SESSION['usertype']=='admin'){
+	header("location:admin-home.php");	
+}
+ include("include/footer.php");
+ ?>

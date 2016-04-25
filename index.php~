@@ -1,6 +1,6 @@
 <?php
 
-   include 'dblib.php'; 
+   include 'include/dblib.php'; 
    $db = new dbmethods();
    $data=$db->select("users","","");
    var_dump($data);
@@ -10,3 +10,4 @@
    //}
 
 ?>
+
