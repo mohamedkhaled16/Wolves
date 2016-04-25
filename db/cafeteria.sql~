@@ -26,9 +26,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-
-
-
 CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(12) NOT NULL AUTO_INCREMENT,
   `category_name` int(12) DEFAULT NULL,
